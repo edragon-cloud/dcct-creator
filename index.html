@@ -151,8 +151,10 @@ textarea.form-control{resize:vertical;min-height:85px;}
       <div style="margin-top:8px;display:flex;gap:8px;">
         <input type="password" id="gkey" class="form-control" style="font-size:.83rem;" placeholder="Dán API Key vào đây..."/>
         <button onclick="saveKey()" class="btn-ai" style="padding:8px 13px;"><i class="bi bi-check2"></i> Lưu</button>
+        <button onclick="testKey()" class="btn-ai" style="padding:8px 13px;background:linear-gradient(135deg,#059669,#10b981);"><i class="bi bi-lightning-charge-fill"></i> Test API</button>
       </div>
       <div id="kstatus" style="font-size:.75rem;margin-top:4px;"></div>
+      <div id="ktest-result" style="display:none;margin-top:8px;font-size:.8rem;border-radius:7px;padding:8px 12px;"></div>
     </div>
   </div>
 
@@ -526,7 +528,53 @@ textarea.form-control{resize:vertical;min-height:85px;}
 // ══════════════════════════════════════════════════════
 // CONFIG & STATE
 // ══════════════════════════════════════════════════════
-const GMODEL = "gemini-1.5-flash-001";
+// Auto-detect model — thử lần lượt cho đến khi có model hoạt động
+const MODELS_TO_TRY = ["gemini-2.0-flash","gemini-1.5-flash","gemini-1.5-flash-001","gemini-1.5-flash-002","gemini-2.0-flash-lite"];
+let GMODEL = "gemini-2.0-flash"; // default, sẽ được cập nhật khi nhấn Test
+
+async function testKey() {
+  const key = document.getElementById("gkey").value.trim();
+  if (!key) { alert("Vui lòng nhập API Key trước!"); return; }
+  if (!key.startsWith("AIza")) {
+    showKR("error","❌ Key sai định dạng. Key từ AI Studio phải bắt đầu bằng 'AIza'"); return;
+  }
+  showKR("info","⏳ Đang kiểm tra " + MODELS_TO_TRY.length + " models...");
+  for (const model of MODELS_TO_TRY) {
+    try {
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
+        { method:"POST", headers:{"Content-Type":"application/json"},
+          body: JSON.stringify({contents:[{parts:[{text:"Say hi"}]}]}) }
+      );
+      const data = await res.json().catch(()=>({}));
+      if (res.ok && data.candidates) {
+        GMODEL = model;
+        _keyMem = key;
+        try { localStorage.setItem("dcct_key",key); localStorage.setItem("dcct_model",model); } catch(e){}
+        document.getElementById("kstatus").innerHTML = '<span style="color:var(--green)"><i class="bi bi-check-circle-fill"></i> Sẵn sàng!</span>';
+        showKR("success","✅ Hoạt động! Model: <strong>" + model + "</strong> — Thầy/Cô có thể dùng AI ngay bây giờ.");
+        return;
+      }
+      const msg = data.error?.message || "";
+      if (res.status === 403 || msg.includes("API_KEY_INVALID") || msg.includes("invalid")) {
+        showKR("error","❌ API Key không hợp lệ. <a href='https://aistudio.google.com/app/apikey' target='_blank'>Lấy key mới tại đây</a>"); return;
+      }
+      if (res.status === 429) { showKR("error","⚠️ Quá giới hạn request. Đợi 1 phút rồi thử lại."); return; }
+      // 404 = model không tồn tại, thử tiếp
+    } catch(e) {
+      showKR("error","❌ Không kết nối được Google API. Kiểm tra mạng internet."); return;
+    }
+  }
+  showKR("error","❌ Không tìm được model nào hoạt động. Hãy tạo API key mới tại <a href='https://aistudio.google.com/app/apikey' target='_blank'>AI Studio</a>.");
+}
+
+function showKR(type, html) {
+  const el = document.getElementById("ktest-result");
+  el.style.display = "block";
+  const colors = { success:["#dcfce7","#15803d"], error:["#fef2f2","#991b1b"], info:["#eff6ff","#1e40af"] };
+  el.style.background = colors[type][0]; el.style.color = colors[type][1];
+  el.innerHTML = html;
+}
 let gtFile = null;   // { base64, mimeType } — giáo trình
 let oldFile = null;  // { base64, mimeType } — đề cương cũ
 let gtCount = 0;
@@ -546,6 +594,8 @@ window.addEventListener("DOMContentLoaded", () => {
       _keyMem = k;
       document.getElementById("gkey").value = k;
       document.getElementById("kstatus").innerHTML = '<span style="color:var(--green)"><i class="bi bi-check-circle-fill"></i> API Key đã được lưu</span>';
+      const savedModel = localStorage.getItem("dcct_model");
+      if (savedModel) GMODEL = savedModel;
     }
   } catch(e) { /* localStorage bị chặn */ }
   addGT('c'); addGT('t');
