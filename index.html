@@ -1242,8 +1242,7 @@ async function buildDocx(D) {
   // Text to paragraphs (split by newline)
   const T2P = (text, o={}) => {
     if (!text) return [EP()];
-    return text.split("
-").filter(l => l.trim()).map(l =>
+    return text.split("\n").filter(l => l.trim()).map(l =>
       P(l.replace(/^[-•]\s*/, ""), { a: 60, ...o })
     );
   };
@@ -1298,51 +1297,40 @@ async function buildDocx(D) {
     columnWidths: CWG,
     rows: [
       new TableRow({ children: [
-        C([P("Phân bổ
-các loại giờ",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[0],rs:4}),
+        C([P("Phân bổ\ncác loại giờ",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[0],rs:4}),
         C([P("Lý thuyết",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[1]}),
         C([P("Thực hành",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[2]}),
         C([P("Đồ án",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[3]}),
-        C([P("Đi thực tế,
-trải nghiệm",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[4]}),
-        C([P("Tự học,
-nghiên cứu",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[5]}),
-        C([P("Thi,
-kiểm tra",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[6]}),
+        C([P("Đi thực tế,\ntrải nghiệm",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[4]}),
+        C([P("Tự học,\nnghiên cứu",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[5]}),
+        C([P("Thi,\nkiểm tra",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[6]}),
         C([P("Tổng",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[7]}),
       ]}),
       new TableRow({ children: [
-        C([P("Trực tiếp
-tại phòng học",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
+        C([P("Trực tiếp\ntại phòng học",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
         C([P(D.gioLT,{c:true,sz:SZS,a:0})], {w:CWG[2]}),
         C([P(D.gioTH,{c:true,sz:SZS,a:0})], {w:CWG[3]}),
         C("",{w:CWG[4]}), C("",{w:CWG[5]}), C("",{w:CWG[6]}),
         C([P(String(gTT),{c:true,sz:SZS,a:0})], {w:CWG[7]}),
       ]}),
       new TableRow({ children: [
-        C([P("Trực tiếp
-trên Ms Team",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
+        C([P("Trực tiếp\ntrên Ms Team",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
         C("",{w:CWG[2]}), C("",{w:CWG[3]}), C("",{w:CWG[4]}), C("",{w:CWG[5]}), C("",{w:CWG[6]}), C("",{w:CWG[7]}),
       ]}),
       new TableRow({ children: [
-        C([P("E-learning
-có hướng dẫn",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
+        C([P("E-learning\ncó hướng dẫn",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
         C("",{w:CWG[2]}), C("",{w:CWG[3]}), C("",{w:CWG[4]}), C("",{w:CWG[5]}), C("",{w:CWG[6]}), C("",{w:CWG[7]}),
       ]}),
       new TableRow({ children: [
-        C([P("Số giờ tự học
-và khác
-("+D.gioTU+" giờ)",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[0],rs:2}),
-        C([P("Tự học,
-tự nghiên cứu",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
+        C([P("Số giờ tự học\nvà khác\n("+D.gioTU+" giờ)",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[0],rs:2}),
+        C([P("Tự học,\ntự nghiên cứu",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
         C("",{w:CWG[2]}), C("",{w:CWG[3]}), C("",{w:CWG[4]}),
         C([P(D.gioTU,{c:true,sz:SZS,a:0})], {w:CWG[5]}),
         C("",{w:CWG[6]}),
         C([P(D.gioTU,{c:true,sz:SZS,a:0})], {w:CWG[7]}),
       ]}),
       new TableRow({ children: [
-        C([P("Ôn thi, dự thi,
-kiểm tra",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
+        C([P("Ôn thi, dự thi,\nkiểm tra",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
         C("",{w:CWG[2]}), C("",{w:CWG[3]}), C("",{w:CWG[4]}), C("",{w:CWG[5]}), C("",{w:CWG[6]}), C("",{w:CWG[7]}),
       ]}),
       new TableRow({ children: [
@@ -1386,8 +1374,7 @@ kiểm tra",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
     rows: [
       new TableRow({ children: [
         C([P("Ký hiệu",{c:true,bold:true,sz:SZS,a:0})],   {w:1701,sh:"D9D9D9"}),
-        C([P("Chuẩn đầu ra của học phần (CLOs)
-Hoàn thành học phần này sinh viên có năng lực",{c:true,bold:true,sz:SZS,a:0})], {sh:"D9D9D9"}),
+        C([P("Chuẩn đầu ra của học phần (CLOs)\nHoàn thành học phần này sinh viên có năng lực",{c:true,bold:true,sz:SZS,a:0})], {sh:"D9D9D9"}),
       ]}),
       new TableRow({ children: [
         C([P("Kiến thức",{c:true,bold:true,sz:SZS,a:0})], {w:1701,sh:"F2F2F2"}),
@@ -1406,8 +1393,7 @@ Hoàn thành học phần này sinh viên có năng lực",{c:true,bold:true,sz:
         C(T2P(D.clo2, {sz:SZS,a:40})),
       ]}),
       new TableRow({ children: [
-        C([P("Năng lực tự chủ
-và trách nhiệm",{c:true,bold:true,sz:SZS,a:0})], {w:1701,sh:"F2F2F2"}),
+        C([P("Năng lực tự chủ\nvà trách nhiệm",{c:true,bold:true,sz:SZS,a:0})], {w:1701,sh:"F2F2F2"}),
         C([P("Năng lực tự chủ và trách nhiệm",{bold:true,sz:SZS,a:0})], {sh:"F2F2F2"}),
       ]}),
       new TableRow({ children: [
@@ -1424,17 +1410,8 @@ và trách nhiệm",{c:true,bold:true,sz:SZS,a:0})], {w:1701,sh:"F2F2F2"}),
     columnWidths: cwMx,
     rows: [
       new TableRow({ children: [
-        C([P("PLO
-CLO",{c:true,bold:true,sz:SZS,a:0})], {w:cwMx[0],sh:"D9D9D9"}),
-        ...["PLO1
-PI 1.1","PLO2
-PI 2.2","PLO3
-PI 3.1","PLO4
-PI 4.1","PLO5
-PI 5.1","PLO6
-PI 6.3","PLO7
-PI 7.1","PLO8
-PI 8.1"]
+        C([P("PLO\nCLO",{c:true,bold:true,sz:SZS,a:0})], {w:cwMx[0],sh:"D9D9D9"}),
+        ...["PLO1\nPI 1.1","PLO2\nPI 2.2","PLO3\nPI 3.1","PLO4\nPI 4.1","PLO5\nPI 5.1","PLO6\nPI 6.3","PLO7\nPI 7.1","PLO8\nPI 8.1"]
           .map((h,i) => C([P(h,{c:true,bold:true,sz:SZS,a:0})], {w:cwMx[i+1],sh:"D9D9D9"}))
       ]}),
       ...D.matrix.map(row => new TableRow({ children: [
@@ -1486,17 +1463,13 @@ PI 8.1"]
   const CWR = [2268,1134,1323,1323,1323,1323,1323]; // 7 cols rubric
   const makeRubricHeader = () => [
     new TableRow({ children: [
-      C([P("Tiêu chí
-đánh giá",{c:true,bold:true,sz:SZS,a:0})],  {w:CWR[0],sh:"D9D9D9"}),
-      C([P("Trọng số
-(%)",{c:true,bold:true,sz:SZS,a:0})],        {w:CWR[1],sh:"D9D9D9"}),
+      C([P("Tiêu chí\nđánh giá",{c:true,bold:true,sz:SZS,a:0})],  {w:CWR[0],sh:"D9D9D9"}),
+      C([P("Trọng số\n(%)",{c:true,bold:true,sz:SZS,a:0})],        {w:CWR[1],sh:"D9D9D9"}),
       C([P("Mức độ đạt chuẩn quy định",{c:true,bold:true,sz:SZS,a:0})], {w:CWR[2]+CWR[3]+CWR[4]+CWR[5]+CWR[6], cs:5, sh:"D9D9D9"}),
     ]}),
     new TableRow({ children: [
-      C([P("Tiêu chí
-đánh giá",{c:true,bold:true,sz:SZS,a:0})],  {w:CWR[0],sh:"D9D9D9"}),
-      C([P("Trọng số
-(%)",{c:true,bold:true,sz:SZS,a:0})],        {w:CWR[1],sh:"D9D9D9"}),
+      C([P("Tiêu chí\nđánh giá",{c:true,bold:true,sz:SZS,a:0})],  {w:CWR[0],sh:"D9D9D9"}),
+      C([P("Trọng số\n(%)",{c:true,bold:true,sz:SZS,a:0})],        {w:CWR[1],sh:"D9D9D9"}),
       ...["A","B","C","D","F"].map((l,i)=>C([P(l,{c:true,bold:true,sz:SZS,a:0})],{w:CWR[i+2],sh:"D9D9D9"}))
     ]}),
     new TableRow({ children: [
@@ -1510,8 +1483,7 @@ PI 8.1"]
     rows: [
       ...makeRubricHeader(),
       new TableRow({ children: [
-        C([P("Dự học
-trên lớp",{c:true,sz:SZS,a:0})],{w:CWR[0]}),
+        C([P("Dự học\ntrên lớp",{c:true,sz:SZS,a:0})],{w:CWR[0]}),
         C([P("50%",{c:true,sz:SZS,a:0})],{w:CWR[1]}),
         C([P("Đi học đầy đủ hoặc nghỉ 1 buổi có lý do hợp lệ.",{sz:SZS,a:0})],{w:CWR[2]}),
         C([P("Nghỉ 2 buổi có lý do hợp lệ hoặc nghỉ 1 buổi không có lý do.",{sz:SZS,a:0})],{w:CWR[3]}),
@@ -1520,8 +1492,7 @@ trên lớp",{c:true,sz:SZS,a:0})],{w:CWR[0]}),
         C([P("Nghỉ ≥5 buổi.",{sz:SZS,a:0})],{w:CWR[6]}),
       ]}),
       new TableRow({ children: [
-        C([P("Đóng góp
-tại lớp",{c:true,sz:SZS,a:0})],{w:CWR[0]}),
+        C([P("Đóng góp\ntại lớp",{c:true,sz:SZS,a:0})],{w:CWR[0]}),
         C([P("50%",{c:true,sz:SZS,a:0})],{w:CWR[1]}),
         C([P("Tham gia đầy đủ, chủ động phát biểu, đóng góp nổi bật.",{sz:SZS,a:0})],{w:CWR[2]}),
         C([P("Tham gia tích cực, có đóng góp thường xuyên.",{sz:SZS,a:0})],{w:CWR[3]}),
@@ -1554,13 +1525,11 @@ tại lớp",{c:true,sz:SZS,a:0})],{w:CWR[0]}),
     width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: CWD,
     rows: [
       new TableRow({ children: [
-        C([P("Điểm
-thành phần",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[0],sh:"D9D9D9"}),
+        C([P("Điểm\nthành phần",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[0],sh:"D9D9D9"}),
         C([P("Phương pháp đánh giá",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[1],sh:"D9D9D9"}),
         C([P("Tỷ trọng",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[2],sh:"D9D9D9"}),
         C([P("Chuẩn đầu ra học phần",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[3]+CWD[4]+CWD[5],cs:3,sh:"D9D9D9"}),
-        C([P("Thời điểm
-đánh giá",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[6],sh:"D9D9D9"}),
+        C([P("Thời điểm\nđánh giá",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[6],sh:"D9D9D9"}),
       ]}),
       new TableRow({ children: [
         C([P("",{sz:SZS,a:0})],{w:CWD[0]}),
@@ -1660,17 +1629,13 @@ thành phần",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[0],sh:"D9D9D9"}),
     C([P("Buổi",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[0],sh:"D9D9D9",rs:2}),
     C([P("Nội dung dạy – học",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[1],sh:"D9D9D9",rs:2}),
     C([P("Số giờ thiết kế",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[2]+CWB[3]+CWB[4]+CWB[5],cs:4,sh:"D9D9D9"}),
-    C([P("Đóng góp
-cho CLO",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[6],sh:"D9D9D9",rs:2}),
+    C([P("Đóng góp\ncho CLO",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[6],sh:"D9D9D9",rs:2}),
   ]});
   const buoiSubHeaderRow = new TableRow({ children: [
     C([P("Tổng",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[2],sh:"D9D9D9"}),
-    C([P("Lý
-thuyết",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[3],sh:"D9D9D9"}),
-    C([P("Thực
-hành",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[4],sh:"D9D9D9"}),
-    C([P("Tự
-học",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[5],sh:"D9D9D9"}),
+    C([P("Lý\nthuyết",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[3],sh:"D9D9D9"}),
+    C([P("Thực\nhành",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[4],sh:"D9D9D9"}),
+    C([P("Tự\nhọc",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[5],sh:"D9D9D9"}),
   ]});
 
   const buoiDataRows = D.buois.map(b => {
@@ -1692,9 +1657,7 @@ học",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[5],sh:"D9D9D9"}),
       C([P(String(b.lt||""),{c:true,sz:SZS,a:0})],{w:CWB[3]}),
       C([P(String(b.th||""),{c:true,sz:SZS,a:0})],{w:CWB[4]}),
       C([P(String(b.tu||""),{c:true,sz:SZS,a:0})],{w:CWB[5]}),
-      C([P("CLO1
-CLO2
-CLO3",{c:true,sz:SZS,a:0})],{w:CWB[6]}),
+      C([P("CLO1\nCLO2\nCLO3",{c:true,sz:SZS,a:0})],{w:CWB[6]}),
     ]});
   });
 
@@ -1748,15 +1711,12 @@ CLO3",{c:true,sz:SZS,a:0})],{w:CWB[6]}),
     rows: [
       new TableRow({ children: [
         C([P("Chương/mục",{c:true,bold:true,sz:SZS,a:0})],{w:CWH[0],sh:"D9D9D9"}),
-        C([P("Nội dung
-trước khi chỉnh sửa/bổ sung",{c:true,bold:true,sz:SZS,a:0})],{w:CWH[1],sh:"D9D9D9"}),
-        C([P("Nội dung
-được cập nhật",{c:true,bold:true,sz:SZS,a:0})],{w:CWH[2],sh:"D9D9D9"}),
+        C([P("Nội dung\ntrước khi chỉnh sửa/bổ sung",{c:true,bold:true,sz:SZS,a:0})],{w:CWH[1],sh:"D9D9D9"}),
+        C([P("Nội dung\nđược cập nhật",{c:true,bold:true,sz:SZS,a:0})],{w:CWH[2],sh:"D9D9D9"}),
       ]}),
       ...(() => {
         // Parse bsND thành rows nếu có format table, hoặc tạo 1 row
-        const lines = (D.bsND||"").split("
-").filter(l=>l.trim());
+        const lines = (D.bsND||"").split("\n").filter(l=>l.trim());
         if (!lines.length) return [new TableRow({ children: [C("",{w:CWH[0]}),C("",{w:CWH[1]}),C("",{w:CWH[2]})] })];
         // Try to detect table rows (lines with |)
         const tableLines = lines.filter(l=>l.includes("|"));
