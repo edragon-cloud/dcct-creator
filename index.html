@@ -529,9 +529,111 @@ textarea.form-control{resize:vertical;min-height:85px;}
 // CONFIG & STATE
 // ══════════════════════════════════════════════════════
 // Auto-detect model — thử lần lượt cho đến khi có model hoạt động
-const MODELS_TO_TRY = ["gemini-2.0-flash","gemini-1.5-flash","gemini-1.5-flash-001","gemini-1.5-flash-002","gemini-2.0-flash-lite"];
-let GMODEL = "gemini-2.0-flash"; // default, sẽ được cập nhật khi nhấn Test
+// ══════════════════════════════════════════════════════
+// POOL KEY — Thầy Tú điền sẵn, GV không cần biết
+// Mỗi key Free Tier = 1500 req/ngày → 3 key = 4500 req/ngày
+// Tạo key mới: aistudio.google.com/app/apikey (mỗi Gmail 1 key)
+// ══════════════════════════════════════════════════════
+const POOL_KEYS = [
+  // Điền key của bạn vào đây — xóa dòng placeholder này
+  // "AIzaSyAMsujKmjS85o8SsFCgmTRgxw0dbeRBO6g",   // Gmail 1: duongthanhtu.dnu@gmail.com
+  // "AIzaSyCVIUmshJiRAhtIQ_bhw_hOEbZXeXz8yfo",   // Gmail 2: thanhtu.duong88@gmail.com
+  // "AIzaSyAvw8kprnHxl1iQQDUgTGH5YpvUWx46578",   // Gmail 3: tony.vo215@gmail.com
+];
 
+const MODELS_TO_TRY = [
+  "gemini-2.0-flash",
+  "gemini-1.5-flash",
+  "gemini-1.5-flash-001",
+  "gemini-2.0-flash-lite"
+];
+let GMODEL = "gemini-2.0-flash";
+
+// Xoay vòng key: thử từng key trong pool
+// Trả về { key, model } hoặc null nếu tất cả đều hết
+async function findWorkingKey() {
+  // Ưu tiên key GV tự nhập
+  const userKey = getKey();
+  if (userKey && userKey.startsWith("AIza")) {
+    for (const model of MODELS_TO_TRY) {
+      const ok = await probeKey(userKey, model);
+      if (ok) return { key: userKey, model };
+    }
+  }
+  // Fallback sang pool key
+  for (const key of POOL_KEYS) {
+    for (const model of MODELS_TO_TRY) {
+      const ok = await probeKey(key, model);
+      if (ok) return { key, model };
+    }
+  }
+  return null;
+}
+
+async function probeKey(key, model) {
+  try {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
+      { method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({contents:[{parts:[{text:"Hi"}]}]}) }
+    );
+    if (!res.ok) return false;
+    const d = await res.json().catch(()=>({}));
+    return !!d.candidates;
+  } catch { return false; }
+}
+
+async function testKey() {
+  const key = document.getElementById("gkey").value.trim();
+  if (!key) {
+    // Thử pool key luôn
+    showKR("info","⏳ Đang kiểm tra...");
+    const found = await findWorkingKey();
+    if (found) {
+      GMODEL = found.model;
+      showKR("success",`✅ Sẵn sàng! (Model: ${found.model})`);
+      document.getElementById("kstatus").innerHTML =
+        '<span style="color:var(--green)"><i class="bi bi-check-circle-fill"></i> Sẵn sàng!</span>';
+    } else {
+      showKR("error", POOL_KEYS.length > 0
+        ? "⚠️ Tất cả key đã hết quota hôm nay. Vui lòng thử lại sau 00:00."
+        : "❌ Chưa có key. Vui lòng nhập API Key hoặc liên hệ Thầy Tú.");
+    }
+    return;
+  }
+  if (!key.startsWith("AIza")) {
+    showKR("error","❌ Key sai định dạng. Key từ AI Studio phải bắt đầu bằng 'AIza'");
+    return;
+  }
+  showKR("info","⏳ Đang kiểm tra...");
+  for (const model of MODELS_TO_TRY) {
+    const ok = await probeKey(key, model);
+    if (ok) {
+      GMODEL = model;
+      _keyMem = key;
+      try { localStorage.setItem("dcct_key",key); localStorage.setItem("dcct_model",model); } catch(e){}
+      document.getElementById("kstatus").innerHTML =
+        '<span style="color:var(--green)"><i class="bi bi-check-circle-fill"></i> Sẵn sàng!</span>';
+      showKR("success",`✅ Hoạt động! Model: <strong>${model}</strong>`);
+      return;
+    }
+  }
+  showKR("error","❌ Key không hoạt động hoặc đã hết quota. " +
+    "<a href='https://aistudio.google.com/app/apikey' target='_blank'>Lấy key mới</a>");
+}
+
+function showKR(type, html) {
+  const el = document.getElementById("ktest-result");
+  el.style.display = "block";
+  const colors = {
+    success: ["#dcfce7","#15803d"],
+    error:   ["#fef2f2","#991b1b"],
+    info:    ["#eff6ff","#1e40af"]
+  };
+  el.style.background = colors[type][0];
+  el.style.color = colors[type][1];
+  el.innerHTML = html;
+}
 async function testKey() {
   const key = document.getElementById("gkey").value.trim();
   if (!key) { alert("Vui lòng nhập API Key trước!"); return; }
@@ -870,8 +972,40 @@ Chỉ trả về danh sách PLO, không có giải thích thêm.`;
 // ══════════════════════════════════════════════════════
 // GEMINI API
 // ══════════════════════════════════════════════════════
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GMODEL}:generateContent`;
+// Xóa dòng này:
+// const API_URL = `https://generativelanguage.googleapis.com/...`
 
+async function gemini(prompt, file=null) {
+  // Tìm key và model hoạt động
+  const found = await findWorkingKey();
+  if (!found) {
+    const msg = POOL_KEYS.length > 0
+      ? "Tất cả API key đã hết quota hôm nay.\nVui lòng thử lại sau 00:00 hoặc nhập key riêng của bạn."
+      : "Vui lòng nhập Gemini API Key ở Bước 1!\n\nLấy key miễn phí tại: aistudio.google.com/app/apikey";
+    alert(msg);
+    return null;
+  }
+  const { key, model } = found;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+
+  const parts = [];
+  if (file) {
+    parts.push({ inline_data: { mime_type: file.mimeType, data: file.base64 } });
+  }
+  parts.push({ text: prompt });
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ contents: [{ parts }] })
+  });
+  if (!res.ok) {
+    const e = await res.json().catch(() => ({}));
+    throw new Error(e.error?.message || "HTTP " + res.status);
+  }
+  const data = await res.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+}
 async function gemini(prompt, file=null) {
   const key = getKey();
   if (!key) { alert("Vui lòng nhập Gemini API Key ở Bước 1!"); return null; }
