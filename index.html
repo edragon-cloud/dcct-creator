@@ -1,8 +1,7 @@
-<!DOCTYPE html><!-- v20260406-fix -->
+<!DOCTYPE html><!-- v20260406-fix2 -->
 <html lang="vi">
 <head>
 <meta charset="UTF-8"/>
-<!-- v=20260405-gemini-1.5-flash -->
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
 <meta http-equiv="Pragma" content="no-cache"/>
 <meta http-equiv="Expires" content="0"/>
@@ -20,13 +19,10 @@
 }
 *{box-sizing:border-box;}
 body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
-
 .app-header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:22px 20px;text-align:center;}
 .app-header .badge-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:50px;padding:5px 14px;font-size:.78rem;font-weight:600;margin-bottom:10px;}
 .app-header h1{font-size:clamp(1.2rem,3.5vw,1.7rem);font-weight:800;margin:0 0 4px;}
 .app-header p{font-size:.85rem;opacity:.8;margin:0;}
-
-/* WIZARD */
 .wizard-nav{display:flex;background:var(--card);border-bottom:2px solid var(--bg);overflow-x:auto;position:sticky;top:0;z-index:100;}
 .wstep{flex:1;min-width:90px;padding:12px 6px;text-align:center;cursor:pointer;border-bottom:3px solid transparent;transition:.2s;font-size:.75rem;font-weight:600;color:var(--muted);}
 .wstep.active{color:var(--navy);border-bottom-color:var(--navy);}
@@ -34,64 +30,44 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
 .wstep .snum{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--bg);font-size:.7rem;font-weight:700;margin-right:4px;}
 .wstep.active .snum{background:var(--navy);color:#fff;}
 .wstep.done .snum{background:var(--green);color:#fff;}
-
-/* CARDS */
 .mc{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin-bottom:14px;}
 .stitle{font-size:.93rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--bg);}
 .stitle .iw{width:28px;height:28px;background:var(--navy);border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.85rem;flex-shrink:0;}
-
-/* FORM */
 .form-label{font-weight:600;font-size:.85rem;margin-bottom:4px;}
 .form-label .req{color:var(--danger);margin-left:2px;}
 .form-control,.form-select{border:1.5px solid var(--border);border-radius:9px;font-size:.9rem;padding:8px 12px;transition:.2s;}
 .form-control:focus,.form-select:focus{border-color:var(--navy2);box-shadow:0 0 0 3px rgba(37,77,122,.12);outline:none;}
 textarea.form-control{resize:vertical;min-height:85px;}
-
-/* AI BTN */
 .btn-ai{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:.82rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.2s;white-space:nowrap;}
 .btn-ai:hover{opacity:.88;} .btn-ai:disabled{opacity:.5;cursor:not-allowed;}
 .btn-ai .sp{width:13px;height:13px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none;}
 .btn-ai.loading .sp{display:inline-block;}
 @keyframes spin{to{transform:rotate(360deg);}}
-
-/* API KEY BOX */
 .key-box{background:#faf5ff;border:1.5px solid #d8b4fe;border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:.83rem;color:#581c87;}
 .key-box a{color:#7c3aed;font-weight:600;}
-
-/* UPLOAD ZONE */
 .uz{border:2px dashed var(--border);border-radius:9px;padding:14px;text-align:center;cursor:pointer;position:relative;transition:.2s;}
 .uz:hover,.uz.has-file{border-color:var(--navy2);background:rgba(37,77,122,.04);}
 .uz input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .uz .ui{font-size:1.4rem;color:var(--navy2);}
 .uz .ut{font-size:.8rem;color:var(--muted);}
 .uz .un{font-size:.82rem;font-weight:600;color:var(--navy);margin-top:3px;}
-
-/* GIÁO TRÌNH ROW */
 .gt-row{background:#f8fafc;border:1.5px solid var(--border);border-radius:9px;padding:12px;margin-bottom:8px;}
 .btn-rm{border:none;background:#fee2e2;color:var(--danger);border-radius:6px;padding:3px 8px;font-size:.78rem;cursor:pointer;font-weight:600;}
 .btn-rm:hover{background:#fca5a5;}
 .btn-add{border:2px dashed var(--navy2);background:transparent;color:var(--navy2);border-radius:8px;padding:8px 14px;font-weight:700;font-size:.85rem;width:100%;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px;}
 .btn-add:hover{background:var(--navy2);color:#fff;}
-
-/* BUỔI HỌC */
 .buoi-card{background:#f8fafc;border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;}
 .buoi-num{font-weight:700;font-size:.8rem;color:var(--navy2);background:rgba(26,58,92,.08);border-radius:20px;padding:3px 10px;}
-
-/* TIET GRID */
 .tg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
 .tb{background:#f0f4f8;border-radius:8px;padding:10px;text-align:center;}
 .tb label{font-size:.73rem;font-weight:700;color:var(--muted);display:block;margin-bottom:4px;}
 .tb input{width:100%;text-align:center;font-size:1rem;font-weight:700;border:1.5px solid var(--border);border-radius:6px;padding:5px;background:#fff;}
 @media(max-width:500px){.tg{grid-template-columns:1fr;}}
-
-/* MA TRẬN */
 .matrix-table{font-size:.78rem;}
 .matrix-table th{background:#dcfce7;color:#15803d;font-weight:700;text-align:center;padding:6px 4px;}
 .matrix-table td{text-align:center;padding:5px 4px;}
 .badge-m{background:#bbf7d0;color:#15803d;border-radius:4px;padding:1px 6px;font-weight:700;font-size:.75rem;}
 .badge-r{background:#dbeafe;color:#1e40af;border-radius:4px;padding:1px 6px;font-weight:700;font-size:.75rem;}
-
-/* BUTTONS */
 .btn-next{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border:none;border-radius:9px;padding:11px 24px;font-size:.9rem;font-weight:700;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:7px;}
 .btn-next:hover{opacity:.9;}
 .btn-prev{background:var(--bg);color:var(--muted);border:1.5px solid var(--border);border-radius:9px;padding:11px 20px;font-size:.9rem;font-weight:600;cursor:pointer;}
@@ -99,31 +75,24 @@ textarea.form-control{resize:vertical;min-height:85px;}
 .btn-export{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);border:none;border-radius:11px;padding:14px 28px;font-size:.95rem;font-weight:800;cursor:pointer;transition:.15s;box-shadow:0 4px 16px rgba(232,160,32,.35);display:flex;align-items:center;gap:9px;width:100%;justify-content:center;}
 .btn-export:hover{opacity:.92;transform:translateY(-1px);}
 .btn-export:disabled{opacity:.6;cursor:not-allowed;transform:none;}
-
-/* PROGRESS */
 .exp-prog{display:none;} .exp-prog.vis{display:block;}
 .progress{height:6px;border-radius:3px;background:var(--bg);}
 .progress-bar{background:linear-gradient(90deg,var(--navy),var(--navy2));border-radius:3px;transition:width .4s;}
-
-/* MISC */
 .page{display:none;} .page.active{display:block;}
 .hint{font-size:.78rem;color:var(--muted);margin-top:3px;}
 .fbadge{background:#fef3c7;color:#92400e;font-size:.7rem;font-weight:700;padding:2px 7px;border-radius:8px;margin-left:5px;}
 .gbadge{background:#dcfce7;color:#15803d;font-size:.7rem;font-weight:700;padding:2px 7px;border-radius:8px;margin-left:5px;}
-.highlight-yellow{background:#fef9c3;border:2px dashed #fbbf24;border-radius:6px;padding:3px 8px;}
 .ai-hint{font-size:.78rem;color:var(--muted);align-self:center;}
 .old-doc-box{background:#fffbeb;border:1.5px solid #fcd34d;border-radius:9px;padding:12px;}
 .app-footer{text-align:center;padding:16px;font-size:.75rem;color:var(--muted);}
 </style>
 </head>
 <body>
-
 <div class="app-header">
   <div class="badge-tag"><i class="bi bi-file-earmark-text-fill"></i> Khoa Ngoại ngữ — ĐH Đồng Nai</div>
   <h1>📝 Soạn Đề Cương Chi Tiết</h1>
   <p>Chương trình đào tạo 2026 — Sư phạm Tiếng Anh</p>
 </div>
-
 <div class="wizard-nav" id="wnav">
   <div class="wstep active" id="n1" onclick="go(1)"><span class="snum">1</span>Học phần</div>
   <div class="wstep" id="n2" onclick="go(2)"><span class="snum">2</span>Giáo trình</div>
@@ -132,13 +101,8 @@ textarea.form-control{resize:vertical;min-height:85px;}
   <div class="wstep" id="n5" onclick="go(5)"><span class="snum">5</span>Kế hoạch</div>
   <div class="wstep" id="n6" onclick="go(6)"><span class="snum">6</span>GV & Xuất</div>
 </div>
-
 <div class="container" style="max-width:760px;padding:16px 12px;">
-
-<!-- ══════ BƯỚC 1: THÔNG TIN HỌC PHẦN ══════ -->
 <div class="page active" id="p1">
-
-  <!-- API KEY -->
   <div class="mc">
     <div class="key-box">
       <i class="bi bi-key-fill"></i> <strong>Gemini API Key</strong> — cần thiết cho tính năng AI gợi ý
@@ -149,7 +113,7 @@ textarea.form-control{resize:vertical;min-height:85px;}
         (đăng nhập Google → nhấn "Create API key")
       </div>
       <div style="margin-top:8px;display:flex;gap:8px;">
-        <input type="password" id="gkey" class="form-control" style="font-size:.83rem;" placeholder="Dán API Key vào đây..."/>
+        <input type="password" id="gkey" class="form-control" style="font-size:.83rem;" placeholder="Dán API Key vào đây (tùy chọn)..."/>
         <button onclick="saveKey()" class="btn-ai" style="padding:8px 13px;"><i class="bi bi-check2"></i> Lưu</button>
         <button onclick="testKey()" class="btn-ai" style="padding:8px 13px;background:linear-gradient(135deg,#059669,#10b981);"><i class="bi bi-lightning-charge-fill"></i> Test API</button>
       </div>
@@ -157,8 +121,6 @@ textarea.form-control{resize:vertical;min-height:85px;}
       <div id="ktest-result" style="display:none;margin-top:8px;font-size:.8rem;border-radius:7px;padding:8px 12px;"></div>
     </div>
   </div>
-
-  <!-- ĐỀ CƯƠNG CŨ -->
   <div class="mc">
     <div class="stitle"><div class="iw"><i class="bi bi-file-earmark-arrow-up"></i></div>
       Upload đề cương cũ <span class="gbadge">Tùy chọn</span>
@@ -176,8 +138,6 @@ textarea.form-control{resize:vertical;min-height:85px;}
       </div>
     </div>
   </div>
-
-  <!-- THÔNG TIN CƠ BẢN -->
   <div class="mc">
     <div class="stitle"><div class="iw"><i class="bi bi-info-circle-fill"></i></div>1. Thông tin học phần</div>
     <div class="row g-3">
@@ -200,8 +160,6 @@ textarea.form-control{resize:vertical;min-height:85px;}
       </div>
     </div>
   </div>
-
-  <!-- SỐ TIẾT -->
   <div class="mc">
     <div class="stitle"><div class="iw"><i class="bi bi-clock-fill"></i></div>Phân bổ số giờ học tập</div>
     <div class="row g-3 mb-3">
@@ -230,15 +188,11 @@ textarea.form-control{resize:vertical;min-height:85px;}
       </div>
     </div>
   </div>
-
-  <!-- CHUẨN ĐẦU RA CTĐT -->
   <div class="mc">
     <div class="stitle"><div class="iw"><i class="bi bi-award-fill"></i></div>
       Chuẩn đầu ra Chương trình đào tạo (PLO)
       <span class="fbadge">AI sẽ dùng để viết mục tiêu & CLO</span>
     </div>
-
-    <!-- Upload file PLO -->
     <div style="background:#eff6ff;border:1.5px solid #93c5fd;border-radius:9px;padding:12px;margin-bottom:12px;">
       <p style="font-size:.83rem;font-weight:700;color:#1e40af;margin-bottom:7px;">
         <i class="bi bi-file-earmark-arrow-up"></i>
@@ -257,34 +211,24 @@ textarea.form-control{resize:vertical;min-height:85px;}
         <span class="ai-hint" id="plo-ai-hint" style="display:none;">AI sẽ đọc bảng trong file và điền vào ô bên dưới</span>
       </div>
     </div>
-
-    <!-- Textarea hiển thị kết quả (GV có thể sửa) -->
-    <label class="form-label" style="font-size:.82rem;">
-      Nội dung PLO (AI tự điền hoặc Thầy/Cô nhập tay)
-    </label>
+    <label class="form-label" style="font-size:.82rem;">Nội dung PLO (AI tự điền hoặc Thầy/Cô nhập tay)</label>
     <textarea id="plo-text" class="form-control" rows="7"
       placeholder="Sau khi upload file và nhấn AI trích xuất, nội dung PLO sẽ xuất hiện ở đây.&#10;&#10;Hoặc Thầy/Cô có thể nhập trực tiếp:&#10;PLO1: Có kiến thức nền tảng về ngôn ngữ học...&#10;PLO2: Có kỹ năng nghe, nói, đọc, viết tiếng Anh...&#10;..."></textarea>
     <p class="hint mt-1"><i class="bi bi-pencil-square"></i> Thầy/Cô có thể chỉnh sửa nội dung sau khi AI điền vào.</p>
   </div>
-
   <div class="d-flex justify-content-end">
     <button class="btn-next" onclick="nx(1)">Tiếp theo <i class="bi bi-arrow-right"></i></button>
   </div>
 </div>
-
-<!-- ══════ BƯỚC 2: GIÁO TRÌNH ══════ -->
 <div class="page" id="p2">
   <div class="mc">
     <div class="stitle"><div class="iw"><i class="bi bi-journals"></i></div>5. Giáo trình & Tài liệu học tập</div>
-
     <p style="font-size:.83rem;font-weight:700;color:var(--muted);margin-bottom:8px;">Giáo trình chính:</p>
     <div id="gt-chinh"></div>
     <button class="btn-add mb-3" onclick="addGT('c')"><i class="bi bi-plus-circle-fill"></i> Thêm giáo trình chính</button>
-
     <p style="font-size:.83rem;font-weight:700;color:var(--muted);margin-bottom:8px;">Tài liệu tham khảo:</p>
     <div id="gt-tk"></div>
     <button class="btn-add mb-3" onclick="addGT('t')"><i class="bi bi-plus-circle-fill"></i> Thêm tài liệu tham khảo</button>
-
     <div style="background:#eff6ff;border:1.5px solid #93c5fd;border-radius:9px;padding:12px;margin-top:4px;">
       <p style="font-size:.83rem;font-weight:700;color:#1e40af;margin-bottom:7px;">
         <i class="bi bi-cloud-upload"></i> Upload file giáo trình chính <span class="gbadge">Tùy chọn — AI đọc để gợi ý</span>
@@ -298,19 +242,15 @@ textarea.form-control{resize:vertical;min-height:85px;}
       <p class="hint">AI sẽ đọc nội dung file này để gợi ý mô tả học phần và kế hoạch giảng dạy chính xác hơn.</p>
     </div>
   </div>
-
   <div class="d-flex justify-content-between">
     <button class="btn-prev" onclick="pv(2)"><i class="bi bi-arrow-left"></i> Quay lại</button>
     <button class="btn-next" onclick="nx(2)">Tiếp theo <i class="bi bi-arrow-right"></i></button>
   </div>
 </div>
-
-<!-- ══════ BƯỚC 3: MÔ TẢ HỌC PHẦN ══════ -->
 <div class="page" id="p3">
   <div class="mc">
     <div class="stitle"><div class="iw"><i class="bi bi-card-text"></i></div>
-      3. Mô tả vắn tắt nội dung học phần
-      <span class="fbadge">Mục số 3</span>
+      3. Mô tả vắn tắt nội dung học phần <span class="fbadge">Mục số 3</span>
     </div>
     <div class="d-flex gap-2 align-items-center mb-3 flex-wrap">
       <button class="btn-ai" id="bai-mota" onclick="aiMoTa()">
@@ -318,20 +258,15 @@ textarea.form-control{resize:vertical;min-height:85px;}
       </button>
       <span class="ai-hint">AI dựa vào tên môn + giáo trình đã nhập</span>
     </div>
-    <textarea id="mo-ta" class="form-control" rows="7"
-      placeholder="Học phần... sử dụng giáo trình... nhằm giúp sinh viên...&#10;&#10;Học phần tập trung vào...&#10;&#10;Học phần củng cố..."></textarea>
+    <textarea id="mo-ta" class="form-control" rows="7" placeholder="Học phần... sử dụng giáo trình... nhằm giúp sinh viên..."></textarea>
     <div class="hint mt-1">Cần ít nhất 5 câu mô tả đầy đủ về nội dung, mục tiêu và phương pháp.</div>
   </div>
-
   <div class="d-flex justify-content-between">
     <button class="btn-prev" onclick="pv(3)"><i class="bi bi-arrow-left"></i> Quay lại</button>
     <button class="btn-next" onclick="nx(3)">Tiếp theo <i class="bi bi-arrow-right"></i></button>
   </div>
 </div>
-
-<!-- ══════ BƯỚC 4: MỤC TIÊU & CLO ══════ -->
 <div class="page" id="p4">
-
   <div class="mc">
     <div class="stitle"><div class="iw"><i class="bi bi-bullseye"></i></div>2.1. Mục tiêu của học phần</div>
     <div class="d-flex gap-2 align-items-center mb-3 flex-wrap">
@@ -343,13 +278,12 @@ textarea.form-control{resize:vertical;min-height:85px;}
     <label class="form-label">Mục tiêu chung <span class="req">*</span></label>
     <textarea id="mt-chung" class="form-control mb-3" rows="4" placeholder="Học phần... nhằm giúp sinh viên..."></textarea>
     <label class="form-label">Mục tiêu về Kiến thức <span class="req">*</span></label>
-    <textarea id="mt-kt" class="form-control mb-3" rows="4" placeholder="- Hiểu rõ...&#10;- Vận dụng được...&#10;- Nắm vững..."></textarea>
+    <textarea id="mt-kt" class="form-control mb-3" rows="4" placeholder="- Hiểu rõ...&#10;- Vận dụng được..."></textarea>
     <label class="form-label">Mục tiêu về Kỹ năng <span class="req">*</span></label>
-    <textarea id="mt-kn" class="form-control mb-3" rows="4" placeholder="- Có khả năng...&#10;- Thực hiện được..."></textarea>
+    <textarea id="mt-kn" class="form-control mb-3" rows="4" placeholder="- Có khả năng..."></textarea>
     <label class="form-label">Mục tiêu về Năng lực tự chủ & Trách nhiệm <span class="req">*</span></label>
-    <textarea id="mt-nl" class="form-control" rows="3" placeholder="- Nhận thức rõ...&#10;- Có thái độ..."></textarea>
+    <textarea id="mt-nl" class="form-control" rows="3" placeholder="- Nhận thức rõ..."></textarea>
   </div>
-
   <div class="mc">
     <div class="stitle"><div class="iw"><i class="bi bi-list-check"></i></div>2.2. Chuẩn đầu ra học phần (CLO)</div>
     <div class="d-flex gap-2 align-items-center mb-3 flex-wrap">
@@ -364,8 +298,6 @@ textarea.form-control{resize:vertical;min-height:85px;}
     <textarea id="clo2" class="form-control mb-3" rows="3" placeholder="Sử dụng linh hoạt và chính xác..."></textarea>
     <label class="form-label">CLO3 — Năng lực tự chủ <span class="req">*</span></label>
     <textarea id="clo3" class="form-control mb-3" rows="3" placeholder="Có ý thức tự học, tự luyện tập..."></textarea>
-
-    <!-- MA TRẬN -->
     <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:9px;padding:14px;" id="matrix-wrap">
       <p style="font-size:.82rem;font-weight:700;color:#15803d;margin-bottom:10px;">
         <i class="bi bi-grid-3x3"></i> Ma trận CLO — PLO/PI
@@ -373,19 +305,13 @@ textarea.form-control{resize:vertical;min-height:85px;}
       </p>
       <div style="overflow-x:auto;">
         <table class="table table-sm table-bordered matrix-table mb-0" id="matrix-table">
-          <thead>
-            <tr>
-              <th style="width:70px;">CLO/PLO</th>
-              <th>PLO1<br><small>PI 1.1</small></th>
-              <th>PLO2<br><small>PI 2.2</small></th>
-              <th>PLO3<br><small>PI 3.1</small></th>
-              <th>PLO4<br><small>PI 4.1</small></th>
-              <th>PLO5<br><small>PI 5.1</small></th>
-              <th>PLO6<br><small>PI 6.3</small></th>
-              <th>PLO7<br><small>PI 7.1</small></th>
-              <th>PLO8<br><small>PI 8.1</small></th>
-            </tr>
-          </thead>
+          <thead><tr>
+            <th style="width:70px;">CLO/PLO</th>
+            <th>PLO1<br><small>PI 1.1</small></th><th>PLO2<br><small>PI 2.2</small></th>
+            <th>PLO3<br><small>PI 3.1</small></th><th>PLO4<br><small>PI 4.1</small></th>
+            <th>PLO5<br><small>PI 5.1</small></th><th>PLO6<br><small>PI 6.3</small></th>
+            <th>PLO7<br><small>PI 7.1</small></th><th>PLO8<br><small>PI 8.1</small></th>
+          </tr></thead>
           <tbody id="matrix-body">
             <tr><td><strong>CLO1</strong></td><td>R</td><td>M</td><td>M</td><td></td><td></td><td></td><td></td><td></td></tr>
             <tr><td><strong>CLO2</strong></td><td></td><td>M</td><td>M</td><td>R</td><td>M</td><td></td><td></td><td></td></tr>
@@ -396,107 +322,61 @@ textarea.form-control{resize:vertical;min-height:85px;}
       <p class="hint mt-1">I = Introduced | R = Reinforced | M = Mastery</p>
     </div>
   </div>
-
   <div class="d-flex justify-content-between">
     <button class="btn-prev" onclick="pv(4)"><i class="bi bi-arrow-left"></i> Quay lại</button>
     <button class="btn-next" onclick="nx(4)">Tiếp theo <i class="bi bi-arrow-right"></i></button>
   </div>
 </div>
-
-<!-- ══════ BƯỚC 5: KẾ HOẠCH GIẢNG DẠY ══════ -->
 <div class="page" id="p5">
   <div class="mc">
     <div class="stitle"><div class="iw"><i class="bi bi-calendar3"></i></div>6. Kế hoạch & Nội dung giảng dạy</div>
-
     <div class="d-flex gap-2 align-items-center mb-3 flex-wrap">
       <button class="btn-ai" id="bai-buoi" onclick="aiAllBuoi()">
         <span class="sp"></span><i class="bi bi-stars"></i> AI viết toàn bộ kế hoạch
       </button>
       <span class="ai-hint">AI điền nội dung tất cả các buổi dựa trên giáo trình</span>
     </div>
-
     <div id="buoi-wrap"></div>
   </div>
-
   <div class="d-flex justify-content-between">
     <button class="btn-prev" onclick="pv(5)"><i class="bi bi-arrow-left"></i> Quay lại</button>
     <button class="btn-next" onclick="nx(5)">Tiếp theo <i class="bi bi-arrow-right"></i></button>
   </div>
 </div>
-
-<!-- ══════ BƯỚC 6: GIẢNG VIÊN & XUẤT ══════ -->
 <div class="page" id="p6">
   <div class="mc">
     <div class="stitle"><div class="iw"><i class="bi bi-person-fill"></i></div>10. Thông tin giảng viên</div>
     <div class="row g-3">
-      <div class="col-md-6">
-        <label class="form-label">Họ và tên <span class="req">*</span></label>
-        <input type="text" id="gv-ten" class="form-control" placeholder="VD: Dương Thanh Tú"/>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label">Học hàm, học vị <span class="req">*</span></label>
-        <input type="text" id="gv-hv" class="form-control" placeholder="VD: Thạc sĩ"/>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label">Điện thoại</label>
-        <input type="text" id="gv-sdt" class="form-control" placeholder="VD: 0972 911 359"/>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label">Email</label>
-        <input type="email" id="gv-email" class="form-control" placeholder="VD: abc@gmail.com"/>
-      </div>
-      <div class="col-12">
-        <label class="form-label">Cách liên lạc</label>
-        <input type="text" id="gv-lh" class="form-control" placeholder="VD: Trao đổi qua Zalo, điện thoại"/>
-      </div>
+      <div class="col-md-6"><label class="form-label">Họ và tên <span class="req">*</span></label><input type="text" id="gv-ten" class="form-control" placeholder="VD: Dương Thanh Tú"/></div>
+      <div class="col-md-6"><label class="form-label">Học hàm, học vị <span class="req">*</span></label><input type="text" id="gv-hv" class="form-control" placeholder="VD: Thạc sĩ"/></div>
+      <div class="col-md-6"><label class="form-label">Điện thoại</label><input type="text" id="gv-sdt" class="form-control"/></div>
+      <div class="col-md-6"><label class="form-label">Email</label><input type="email" id="gv-email" class="form-control"/></div>
+      <div class="col-12"><label class="form-label">Cách liên lạc</label><input type="text" id="gv-lh" class="form-control" placeholder="VD: Trao đổi qua Zalo, điện thoại"/></div>
     </div>
     <hr style="margin:14px 0;"/>
     <p style="font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:10px;">Giảng viên dự phòng (nếu có)</p>
     <div class="row g-3">
-      <div class="col-md-6">
-        <label class="form-label">Họ và tên</label>
-        <input type="text" id="gv2-ten" class="form-control" placeholder="Họ tên GV dự phòng"/>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label">Học hàm, học vị</label>
-        <input type="text" id="gv2-hv" class="form-control" placeholder="VD: Thạc sĩ"/>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label">Email</label>
-        <input type="email" id="gv2-email" class="form-control" placeholder="Email GV dự phòng"/>
-      </div>
+      <div class="col-md-6"><label class="form-label">Họ và tên</label><input type="text" id="gv2-ten" class="form-control"/></div>
+      <div class="col-md-6"><label class="form-label">Học hàm, học vị</label><input type="text" id="gv2-hv" class="form-control"/></div>
+      <div class="col-md-6"><label class="form-label">Email</label><input type="email" id="gv2-email" class="form-control"/></div>
     </div>
   </div>
-
   <div class="mc">
     <div class="stitle"><div class="iw"><i class="bi bi-clock-history"></i></div>9. Lịch sử biên soạn & cập nhật</div>
     <div class="row g-3">
-      <div class="col-md-4">
-        <label class="form-label">Năm biên soạn lần đầu</label>
-        <input type="text" id="bs-nam1" class="form-control" placeholder="VD: 2022"/>
-      </div>
-      <div class="col-md-4">
-        <label class="form-label">Năm chỉnh sửa gần nhất</label>
-        <input type="text" id="bs-nam2" class="form-control" placeholder="VD: 2026"/>
-      </div>
-      <div class="col-md-4">
-        <label class="form-label">Ngày ký</label>
-        <input type="text" id="bs-ngay" class="form-control" placeholder="VD: 23 tháng 3 năm 2026"/>
-      </div>
+      <div class="col-md-4"><label class="form-label">Năm biên soạn lần đầu</label><input type="text" id="bs-nam1" class="form-control" placeholder="VD: 2022"/></div>
+      <div class="col-md-4"><label class="form-label">Năm chỉnh sửa gần nhất</label><input type="text" id="bs-nam2" class="form-control" placeholder="VD: 2026"/></div>
+      <div class="col-md-4"><label class="form-label">Ngày ký</label><input type="text" id="bs-ngay" class="form-control" placeholder="VD: 23 tháng 3 năm 2026"/></div>
       <div class="col-12">
         <label class="form-label">Nội dung chỉnh sửa lần gần nhất</label>
         <div class="d-flex gap-2 mb-2 flex-wrap">
-          <button class="btn-ai" id="bai-bs" onclick="aiLichSu()">
-            <span class="sp"></span><i class="bi bi-stars"></i> AI đọc đề cương cũ và điền
-          </button>
+          <button class="btn-ai" id="bai-bs" onclick="aiLichSu()"><span class="sp"></span><i class="bi bi-stars"></i> AI đọc đề cương cũ và điền</button>
           <span class="ai-hint">Cần upload đề cương cũ ở Bước 1</span>
         </div>
-        <textarea id="bs-nd" class="form-control" rows="4"
-          placeholder="VD: Cập nhật CLO theo mẫu mới 2026, bổ sung ma trận CLO–PLO/PI, điều chỉnh kế hoạch giảng dạy từ 10 lên 15 buổi..."></textarea>
+        <textarea id="bs-nd" class="form-control" rows="4" placeholder="VD: Cập nhật CLO theo mẫu mới 2026..."></textarea>
       </div>
     </div>
   </div>
-
   <div class="mc">
     <div id="exp-prog" class="exp-prog mb-3">
       <div class="progress"><div id="exp-bar" class="progress-bar" style="width:0%"></div></div>
@@ -509,36 +389,27 @@ textarea.form-control{resize:vertical;min-height:85px;}
       <i class="bi bi-info-circle"></i> File sẽ tải về máy tự động
     </p>
   </div>
-
   <div class="d-flex justify-content-start">
     <button class="btn-prev" onclick="pv(6)"><i class="bi bi-arrow-left"></i> Quay lại</button>
   </div>
 </div>
-
-</div><!-- /.container -->
-
+</div>
 <div class="app-footer">
   &copy; 2026 Khoa Ngoại ngữ — Trường ĐH Đồng Nai &nbsp;|&nbsp;
   <a href="mailto:duongthanhtu.dnu@gmail.com" style="color:var(--navy2);">duongthanhtu.dnu@gmail.com</a>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/docx.umd.min.js"></script>
 <script>
 // ══════════════════════════════════════════════════════
-// CONFIG & STATE
-// ══════════════════════════════════════════════════════
-// Auto-detect model — thử lần lượt cho đến khi có model hoạt động
-// ══════════════════════════════════════════════════════
-// POOL KEY — Thầy Tú điền sẵn, GV không cần biết
-// Mỗi key Free Tier = 1500 req/ngày → 3 key = 4500 req/ngày
-// Tạo key mới: aistudio.google.com/app/apikey (mỗi Gmail 1 key)
+// POOL KEY — điền key sẵn để GV không cần nhập
+// Mỗi key Free Tier = 1500 req/ngày
+// Tạo key: aistudio.google.com/app/apikey (mỗi Gmail 1 key)
 // ══════════════════════════════════════════════════════
 const POOL_KEYS = [
-  // Điền key của bạn vào đây — xóa dòng placeholder này
-  // "AIzaSyAMsujKmjS85o8SsFCgmTRgxw0dbeRBO6g",   // Gmail 1: duongthanhtu.dnu@gmail.com
-  // "AIzaSyCVIUmshJiRAhtIQ_bhw_hOEbZXeXz8yfo",   // Gmail 2: thanhtu.duong88@gmail.com
-  // "AIzaSyAvw8kprnHxl1iQQDUgTGH5YpvUWx46578",   // Gmail 3: tony.vo215@gmail.com
+  // "AIzaSy...",  // Gmail 1
+  // "AIzaSy...",  // Gmail 2
+  // "AIzaSy...",  // Gmail 3
 ];
 
 const MODELS_TO_TRY = [
@@ -548,9 +419,55 @@ const MODELS_TO_TRY = [
   "gemini-2.0-flash-lite"
 ];
 let GMODEL = "gemini-2.0-flash";
+let _keyMem = "";
+let gtFile = null;
+let oldFile = null;
+let ploFile = null;
+let gtCount = 0;
+let matrixData = [
+  ["CLO1","R","M","M","","","","",""],
+  ["CLO2","","M","M","R","M","","",""],
+  ["CLO3","","","","","","R","R","M"],
+];
 
-// Xoay vòng key: thử từng key trong pool
-// Trả về { key, model } hoặc null nếu tất cả đều hết
+// ── Key helpers ──────────────────────────────────────
+function getKey() {
+  if (_keyMem) return _keyMem;
+  try { return localStorage.getItem("dcct_key") || document.getElementById("gkey").value.trim(); }
+  catch(e) { return document.getElementById("gkey").value.trim(); }
+}
+
+function saveKey() {
+  const k = document.getElementById("gkey").value.trim();
+  if (!k) return;
+  _keyMem = k;
+  try { localStorage.setItem("dcct_key", k); } catch(e) {}
+  document.getElementById("kstatus").innerHTML =
+    '<span style="color:var(--green)"><i class="bi bi-check-circle-fill"></i> Đã lưu thành công!</span>';
+}
+
+function showKR(type, html) {
+  const el = document.getElementById("ktest-result");
+  el.style.display = "block";
+  const colors = { success:["#dcfce7","#15803d"], error:["#fef2f2","#991b1b"], info:["#eff6ff","#1e40af"] };
+  el.style.background = colors[type][0];
+  el.style.color = colors[type][1];
+  el.innerHTML = html;
+}
+
+async function probeKey(key, model) {
+  try {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
+      { method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({contents:[{parts:[{text:"Hi"}]}]}) }
+    );
+    if (!res.ok) return false;
+    const d = await res.json().catch(()=>({}));
+    return !!d.candidates;
+  } catch { return false; }
+}
+
 async function findWorkingKey() {
   // Ưu tiên key GV tự nhập
   const userKey = getKey();
@@ -570,34 +487,20 @@ async function findWorkingKey() {
   return null;
 }
 
-async function probeKey(key, model) {
-  try {
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
-      { method:"POST", headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({contents:[{parts:[{text:"Hi"}]}]}) }
-    );
-    if (!res.ok) return false;
-    const d = await res.json().catch(()=>({}));
-    return !!d.candidates;
-  } catch { return false; }
-}
-
 async function testKey() {
   const key = document.getElementById("gkey").value.trim();
   if (!key) {
-    // Thử pool key luôn
-    showKR("info","⏳ Đang kiểm tra...");
+    showKR("info","⏳ Đang kiểm tra pool key...");
     const found = await findWorkingKey();
     if (found) {
       GMODEL = found.model;
-      showKR("success",`✅ Sẵn sàng! (Model: ${found.model})`);
+      showKR("success", `✅ Sẵn sàng! Model: <strong>${found.model}</strong>`);
       document.getElementById("kstatus").innerHTML =
         '<span style="color:var(--green)"><i class="bi bi-check-circle-fill"></i> Sẵn sàng!</span>';
     } else {
       showKR("error", POOL_KEYS.length > 0
-        ? "⚠️ Tất cả key đã hết quota hôm nay. Vui lòng thử lại sau 00:00."
-        : "❌ Chưa có key. Vui lòng nhập API Key hoặc liên hệ Thầy Tú.");
+        ? "⚠️ Tất cả key đã hết quota hôm nay. Thử lại sau 00:00 hoặc nhập key riêng."
+        : "❌ Chưa có key. Vui lòng nhập API Key hoặc liên hệ quản trị.");
     }
     return;
   }
@@ -614,7 +517,7 @@ async function testKey() {
       try { localStorage.setItem("dcct_key",key); localStorage.setItem("dcct_model",model); } catch(e){}
       document.getElementById("kstatus").innerHTML =
         '<span style="color:var(--green)"><i class="bi bi-check-circle-fill"></i> Sẵn sàng!</span>';
-      showKR("success",`✅ Hoạt động! Model: <strong>${model}</strong>`);
+      showKR("success", `✅ Hoạt động! Model: <strong>${model}</strong>`);
       return;
     }
   }
@@ -622,109 +525,64 @@ async function testKey() {
     "<a href='https://aistudio.google.com/app/apikey' target='_blank'>Lấy key mới</a>");
 }
 
-function showKR(type, html) {
-  const el = document.getElementById("ktest-result");
-  el.style.display = "block";
-  const colors = {
-    success: ["#dcfce7","#15803d"],
-    error:   ["#fef2f2","#991b1b"],
-    info:    ["#eff6ff","#1e40af"]
-  };
-  el.style.background = colors[type][0];
-  el.style.color = colors[type][1];
-  el.innerHTML = html;
-}
-async function testKey() {
-  const key = document.getElementById("gkey").value.trim();
-  if (!key) { alert("Vui lòng nhập API Key trước!"); return; }
-  if (!key.startsWith("AIza")) {
-    showKR("error","❌ Key sai định dạng. Key từ AI Studio phải bắt đầu bằng 'AIza'"); return;
+// ── Gemini API — duy nhất 1 hàm ─────────────────────
+async function gemini(prompt, file=null) {
+  const found = await findWorkingKey();
+  if (!found) {
+    const msg = POOL_KEYS.length > 0
+      ? "Tất cả API key đã hết quota hôm nay.\nVui lòng thử lại sau 00:00 hoặc nhập key riêng của bạn."
+      : "Vui lòng nhập Gemini API Key ở Bước 1!\n\nLấy key miễn phí tại: aistudio.google.com/app/apikey";
+    alert(msg);
+    return null;
   }
-  showKR("info","⏳ Đang kiểm tra " + MODELS_TO_TRY.length + " models...");
-  for (const model of MODELS_TO_TRY) {
-    try {
-      const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
-        { method:"POST", headers:{"Content-Type":"application/json"},
-          body: JSON.stringify({contents:[{parts:[{text:"Say hi"}]}]}) }
-      );
-      const data = await res.json().catch(()=>({}));
-      if (res.ok && data.candidates) {
-        GMODEL = model;
-        _keyMem = key;
-        try { localStorage.setItem("dcct_key",key); localStorage.setItem("dcct_model",model); } catch(e){}
-        document.getElementById("kstatus").innerHTML = '<span style="color:var(--green)"><i class="bi bi-check-circle-fill"></i> Sẵn sàng!</span>';
-        showKR("success","✅ Hoạt động! Model: <strong>" + model + "</strong> — Thầy/Cô có thể dùng AI ngay bây giờ.");
-        return;
-      }
-      const msg = data.error?.message || "";
-      if (res.status === 403 || msg.includes("API_KEY_INVALID") || msg.includes("invalid")) {
-        showKR("error","❌ API Key không hợp lệ. <a href='https://aistudio.google.com/app/apikey' target='_blank'>Lấy key mới tại đây</a>"); return;
-      }
-      if (res.status === 429) { showKR("error","⚠️ Quá giới hạn request. Đợi 1 phút rồi thử lại."); return; }
-      // 404 = model không tồn tại, thử tiếp
-    } catch(e) {
-      showKR("error","❌ Không kết nối được Google API. Kiểm tra mạng internet."); return;
-    }
+  const { key, model } = found;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+  const parts = [];
+  if (file) parts.push({ inline_data: { mime_type: file.mimeType, data: file.base64 } });
+  parts.push({ text: prompt });
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ contents: [{ parts }] })
+  });
+  if (!res.ok) {
+    const e = await res.json().catch(() => ({}));
+    throw new Error(e.error?.message || "HTTP " + res.status);
   }
-  showKR("error","❌ Không tìm được model nào hoạt động. Hãy tạo API key mới tại <a href='https://aistudio.google.com/app/apikey' target='_blank'>AI Studio</a>.");
+  const data = await res.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text || "";
 }
 
-function showKR(type, html) {
-  const el = document.getElementById("ktest-result");
-  el.style.display = "block";
-  const colors = { success:["#dcfce7","#15803d"], error:["#fef2f2","#991b1b"], info:["#eff6ff","#1e40af"] };
-  el.style.background = colors[type][0]; el.style.color = colors[type][1];
-  el.innerHTML = html;
+function extractJSON(text, type = "object") {
+  const pattern = type === "array" ? /\[[\s\S]*\]/ : /\{[\s\S]*\}/;
+  const match = text.match(pattern);
+  if (!match) throw new Error("AI không trả về JSON hợp lệ. Vui lòng thử lại.");
+  return JSON.parse(match[0]);
 }
-let gtFile = null;   // { base64, mimeType } — giáo trình
-let oldFile = null;  // { base64, mimeType } — đề cương cũ
-let gtCount = 0;
-let matrixData = [
-  ["CLO1","R","M","M","","","","",""],
-  ["CLO2","","M","M","R","M","","",""],
-  ["CLO3","","","","","","R","R","M"],
-];
 
-// ══════════════════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════════════════
+function setLoading(id, on) {
+  const b = document.getElementById(id);
+  b.disabled = on; b.classList.toggle("loading", on);
+}
+
+// ── Init ─────────────────────────────────────────────
 window.addEventListener("DOMContentLoaded", () => {
   try {
     const k = localStorage.getItem("dcct_key");
     if (k) {
       _keyMem = k;
       document.getElementById("gkey").value = k;
-      document.getElementById("kstatus").innerHTML = '<span style="color:var(--green)"><i class="bi bi-check-circle-fill"></i> API Key đã được lưu</span>';
+      document.getElementById("kstatus").innerHTML =
+        '<span style="color:var(--green)"><i class="bi bi-check-circle-fill"></i> API Key đã được lưu</span>';
       const savedModel = localStorage.getItem("dcct_model");
       if (savedModel) GMODEL = savedModel;
     }
-  } catch(e) { /* localStorage bị chặn */ }
+  } catch(e) {}
   addGT('c'); addGT('t');
   rebuildBuoi();
 });
 
-// ══════════════════════════════════════════════════════
-// API KEY
-// ══════════════════════════════════════════════════════
-// localStorage fallback — một số trình duyệt chặn storage
-let _keyMem = "";
-function saveKey() {
-  const k = document.getElementById("gkey").value.trim();
-  if (!k) return;
-  _keyMem = k;
-  try { localStorage.setItem("dcct_key", k); } catch(e) { /* bị chặn, dùng memory */ }
-  document.getElementById("kstatus").innerHTML = '<span style="color:var(--green)"><i class="bi bi-check-circle-fill"></i> Đã lưu thành công!</span>';
-}
-function getKey() {
-  if (_keyMem) return _keyMem;
-  try { return localStorage.getItem("dcct_key") || document.getElementById("gkey").value.trim(); }
-  catch(e) { return document.getElementById("gkey").value.trim(); }
-}
-
-// ══════════════════════════════════════════════════════
-// WIZARD
-// ══════════════════════════════════════════════════════
+// ── Wizard ───────────────────────────────────────────
 let cur = 1;
 function go(n) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
@@ -742,15 +600,13 @@ function nx(from) {
   go(from + 1);
 }
 function pv(from) { go(from - 1); }
-
 function validate(step) {
   const req = {
     1: [["ten-vn","Tên học phần tiếng Việt"],["ten-en","Tên học phần tiếng Anh"],["so-tc","Số tín chỉ"],["so-buoi","Số buổi học"]],
     4: [["mt-chung","Mục tiêu chung"],["mt-kt","Mục tiêu kiến thức"],["mt-kn","Mục tiêu kỹ năng"],["clo1","CLO1"],["clo2","CLO2"],["clo3","CLO3"]],
     6: [["gv-ten","Họ tên giảng viên"],["gv-hv","Học vị giảng viên"]],
   };
-  const fields = req[step] || [];
-  for (const [id, label] of fields) {
+  for (const [id, label] of (req[step] || [])) {
     const el = document.getElementById(id);
     if (el && !el.value.trim()) {
       el.style.borderColor = "#f87171"; el.focus();
@@ -761,9 +617,7 @@ function validate(step) {
   return true;
 }
 
-// ══════════════════════════════════════════════════════
-// FILE HANDLERS
-// ══════════════════════════════════════════════════════
+// ── File handlers ────────────────────────────────────
 function readFile(file, cb) {
   const r = new FileReader();
   r.onload = e => cb({ base64: e.target.result.split(",")[1], mimeType: file.type || "application/pdf" });
@@ -783,10 +637,17 @@ function handleGT(inp) {
   document.getElementById("gt-fn").innerHTML = `<i class="bi bi-file-check-fill" style="color:var(--green)"></i> ${inp.files[0].name}`;
   readFile(inp.files[0], d => { gtFile = d; });
 }
+function handlePLOFile(inp) {
+  if (!inp.files[0]) return;
+  document.getElementById("uz-plo").classList.add("has-file");
+  document.getElementById("plo-fn").style.display = "block";
+  document.getElementById("plo-fn").innerHTML = `<i class="bi bi-file-check-fill" style="color:var(--green)"></i> ${inp.files[0].name}`;
+  document.getElementById("bai-plo").style.display = "inline-flex";
+  document.getElementById("plo-ai-hint").style.display = "inline";
+  readFile(inp.files[0], d => { ploFile = d; });
+}
 
-// ══════════════════════════════════════════════════════
-// GIÁO TRÌNH ROWS
-// ══════════════════════════════════════════════════════
+// ── Giáo trình ───────────────────────────────────────
 function addGT(type) {
   gtCount++;
   const id = `gt-${type}-${gtCount}`;
@@ -815,60 +676,51 @@ function collectGT(type) {
     })).filter(g => g.ten);
 }
 
-// ══════════════════════════════════════════════════════
-// GIỜ / TIẾT
-// ══════════════════════════════════════════════════════
+// ── Giờ / Tiết ───────────────────────────────────────
 function suggestGio() {
   const tc = parseInt(document.getElementById("so-tc").value) || 0;
-  if (!tc) return;
-  if (!document.getElementById("gio-lt").value) {
-    document.getElementById("gio-lt").value = tc * 7;
-    document.getElementById("gio-th").value = tc * 15;
-    document.getElementById("gio-tuhoc").value = tc * 28;
-    calcTotal(); autoDistributeGio();
-  }
+  if (!tc || document.getElementById("gio-lt").value) return;
+  document.getElementById("gio-lt").value = tc * 7;
+  document.getElementById("gio-th").value = tc * 15;
+  document.getElementById("gio-tuhoc").value = tc * 28;
+  calcTotal(); autoDistributeGio();
 }
 function calcTotal() {
   const lt = parseInt(document.getElementById("gio-lt").value) || 0;
   const th = parseInt(document.getElementById("gio-th").value) || 0;
   const tu = parseInt(document.getElementById("gio-tuhoc").value) || 0;
   const tot = lt + th + tu;
-  document.getElementById("tong-gio").innerHTML = tot > 0
-    ? `<strong>Tổng: ${tot} giờ</strong>` : "";
+  document.getElementById("tong-gio").innerHTML = tot > 0 ? `<strong>Tổng: ${tot} giờ</strong>` : "";
 }
-
-// Tự chia đều giờ cho từng buổi
 function autoDistributeGio() {
-  const n   = parseInt(document.getElementById("so-buoi").value) || 0;
-  const lt  = parseInt(document.getElementById("gio-lt").value)  || 0;
-  const th  = parseInt(document.getElementById("gio-th").value)  || 0;
-  const tu  = parseInt(document.getElementById("gio-tuhoc").value) || 0;
+  const n  = parseInt(document.getElementById("so-buoi").value) || 0;
+  const lt = parseInt(document.getElementById("gio-lt").value)  || 0;
+  const th = parseInt(document.getElementById("gio-th").value)  || 0;
+  const tu = parseInt(document.getElementById("gio-tuhoc").value) || 0;
   if (!n) return;
-  const cards = document.querySelectorAll(".buoi-card");
-  cards.forEach((c, i) => {
-    // Phân bổ đều, buổi cuối lấy phần dư
-    const isLast = i === cards.length - 1;
-    const perLT  = isLast ? lt  - Math.floor(lt/n)  * i : Math.floor(lt/n);
-    const perTH  = isLast ? th  - Math.floor(th/n)  * i : Math.floor(th/n);
-    const perTU  = isLast ? tu  - Math.floor(tu/n)  * i : Math.floor(tu/n);
-    const inp = (cls, val) => { const e = c.querySelector(cls); if (e && !e.dataset.edited) e.value = val || ""; };
+  document.querySelectorAll(".buoi-card").forEach((c, i) => {
+    const isLast = i === document.querySelectorAll(".buoi-card").length - 1;
+    const perLT = isLast ? lt - Math.floor(lt/n)*i : Math.floor(lt/n);
+    const perTH = isLast ? th - Math.floor(th/n)*i : Math.floor(th/n);
+    const perTU = isLast ? tu - Math.floor(tu/n)*i : Math.floor(tu/n);
+    const inp = (cls, val) => { const e = c.querySelector(cls); if (e && !e.dataset.edited) e.value = val||""; };
     inp(".bi-lt", perLT); inp(".bi-th", perTH); inp(".bi-tu", perTU);
   });
 }
 
-// ══════════════════════════════════════════════════════
-// BUỔI HỌC
-// ══════════════════════════════════════════════════════
+// ── Buổi học ─────────────────────────────────────────
 function rebuildBuoi() {
   const n = parseInt(document.getElementById("so-buoi").value) || 0;
   if (n < 1 || n > 30) return;
   const wrap = document.getElementById("buoi-wrap");
-  const cur  = wrap.querySelectorAll(".buoi-card").length;
-  if (n > cur)      { for (let i = cur+1; i <= n; i++) addBuoi(i); }
-  else if (n < cur) { const cards = wrap.querySelectorAll(".buoi-card"); for (let i = n; i < cards.length; i++) cards[i].remove(); }
+  const curN = wrap.querySelectorAll(".buoi-card").length;
+  if (n > curN) { for (let i = curN+1; i <= n; i++) addBuoi(i); }
+  else if (n < curN) {
+    const cards = wrap.querySelectorAll(".buoi-card");
+    for (let i = n; i < cards.length; i++) cards[i].remove();
+  }
   autoDistributeGio();
 }
-
 function addBuoi(num) {
   const wrap = document.getElementById("buoi-wrap");
   const d = document.createElement("div");
@@ -879,7 +731,7 @@ function addBuoi(num) {
     </div>
     <div class="mb-2">
       <label class="form-label" style="font-size:.8rem;">Tên buổi / Chủ đề <span class="req">*</span></label>
-      <input type="text" class="form-control bi-ten" placeholder="VD: Unit 1 — Giới thiệu học phần & chủ đề đầu tiên" style="font-size:.86rem;"/>
+      <input type="text" class="form-control bi-ten" placeholder="VD: Unit 1 — Giới thiệu học phần" style="font-size:.86rem;"/>
     </div>
     <div class="tg mb-2">
       <div class="tb"><label>Giờ LT</label><input type="number" class="bi-lt" min="0" placeholder="0" oninput="this.dataset.edited=1"/></div>
@@ -887,188 +739,68 @@ function addBuoi(num) {
       <div class="tb"><label>Giờ Tự học</label><input type="number" class="bi-tu" min="0" placeholder="0" oninput="this.dataset.edited=1"/></div>
     </div>
     <div class="row g-2">
-      <div class="col-md-6">
-        <label class="form-label" style="font-size:.77rem;">① Lý thuyết</label>
-        <textarea class="form-control bi-nd-lt" rows="3" placeholder="- Nội dung lý thuyết..." style="font-size:.8rem;min-height:65px;"></textarea>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label" style="font-size:.77rem;">② Thực hành</label>
-        <textarea class="form-control bi-nd-th" rows="3" placeholder="- Bài tập thực hành..." style="font-size:.8rem;min-height:65px;"></textarea>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label" style="font-size:.77rem;">③ Tự học</label>
-        <textarea class="form-control bi-nd-tu" rows="2" placeholder="- Bài tập về nhà..." style="font-size:.8rem;min-height:50px;"></textarea>
-      </div>
-      <div class="col-md-3">
-        <label class="form-label" style="font-size:.77rem;">④ PP giảng dạy</label>
-        <input type="text" class="form-control bi-ppdh" placeholder="Pair work, Drilling..." style="font-size:.8rem;"/>
-      </div>
-      <div class="col-md-3">
-        <label class="form-label" style="font-size:.77rem;">⑤ Đánh giá</label>
-        <input type="text" class="form-control bi-dg" placeholder="Chuyên cần, BT..." style="font-size:.8rem;"/>
-      </div>
+      <div class="col-md-6"><label class="form-label" style="font-size:.77rem;">① Lý thuyết</label><textarea class="form-control bi-nd-lt" rows="3" style="font-size:.8rem;min-height:65px;" placeholder="- Nội dung lý thuyết..."></textarea></div>
+      <div class="col-md-6"><label class="form-label" style="font-size:.77rem;">② Thực hành</label><textarea class="form-control bi-nd-th" rows="3" style="font-size:.8rem;min-height:65px;" placeholder="- Bài tập thực hành..."></textarea></div>
+      <div class="col-md-6"><label class="form-label" style="font-size:.77rem;">③ Tự học</label><textarea class="form-control bi-nd-tu" rows="2" style="font-size:.8rem;min-height:50px;" placeholder="- Bài tập về nhà..."></textarea></div>
+      <div class="col-md-3"><label class="form-label" style="font-size:.77rem;">④ PP giảng dạy</label><input type="text" class="form-control bi-ppdh" style="font-size:.8rem;" placeholder="Pair work..."/></div>
+      <div class="col-md-3"><label class="form-label" style="font-size:.77rem;">⑤ Đánh giá</label><input type="text" class="form-control bi-dg" style="font-size:.8rem;" placeholder="Chuyên cần..."/></div>
     </div>`;
   wrap.appendChild(d);
 }
-
 function collectBuoi() {
   return Array.from(document.querySelectorAll(".buoi-card")).map((c, i) => ({
     num: i+1,
-    ten:   c.querySelector(".bi-ten")?.value.trim()   || `Buổi ${i+1}`,
-    lt:    c.querySelector(".bi-lt")?.value.trim()    || "0",
-    th:    c.querySelector(".bi-th")?.value.trim()    || "0",
-    tu:    c.querySelector(".bi-tu")?.value.trim()    || "0",
-    ndLT:  c.querySelector(".bi-nd-lt")?.value.trim() || "",
-    ndTH:  c.querySelector(".bi-nd-th")?.value.trim() || "",
-    ndTU:  c.querySelector(".bi-nd-tu")?.value.trim() || "",
-    ppdh:  c.querySelector(".bi-ppdh")?.value.trim()  || "",
-    dg:    c.querySelector(".bi-dg")?.value.trim()    || "",
+    ten:  c.querySelector(".bi-ten")?.value.trim()   || `Buổi ${i+1}`,
+    lt:   c.querySelector(".bi-lt")?.value.trim()    || "0",
+    th:   c.querySelector(".bi-th")?.value.trim()    || "0",
+    tu:   c.querySelector(".bi-tu")?.value.trim()    || "0",
+    ndLT: c.querySelector(".bi-nd-lt")?.value.trim() || "",
+    ndTH: c.querySelector(".bi-nd-th")?.value.trim() || "",
+    ndTU: c.querySelector(".bi-nd-tu")?.value.trim() || "",
+    ppdh: c.querySelector(".bi-ppdh")?.value.trim()  || "",
+    dg:   c.querySelector(".bi-dg")?.value.trim()    || "",
   }));
 }
 
-// ══════════════════════════════════════════════════════
-// PLO FILE HANDLER
-// ══════════════════════════════════════════════════════
-let ploFile = null;
-
-function handlePLOFile(inp) {
-  if (!inp.files[0]) return;
-  const file = inp.files[0];
-  document.getElementById("uz-plo").classList.add("has-file");
-  document.getElementById("plo-fn").style.display = "block";
-  document.getElementById("plo-fn").innerHTML = `<i class="bi bi-file-check-fill" style="color:var(--green)"></i> ${file.name}`;
-  document.getElementById("bai-plo").style.display = "inline-flex";
-  document.getElementById("plo-ai-hint").style.display = "inline";
-  readFile(file, d => { ploFile = d; });
-}
-
+// ── AI functions ─────────────────────────────────────
 async function aiExtractPLO() {
   if (!ploFile) { alert("Vui lòng upload file trước!"); return; }
   setLoading("bai-plo", true);
   try {
-    const prompt = `Đây là tài liệu Chuẩn đầu ra Chương trình đào tạo (CTĐT) ngành Sư phạm Tiếng Anh.
-Hãy đọc bảng chuẩn đầu ra và trích xuất danh sách PLO (Program Learning Outcomes / Chuẩn đầu ra chương trình).
-
-Trả về CHÍNH XÁC theo định dạng sau (mỗi PLO 1 dòng, không thêm gì khác):
-PLO1: [Nội dung đầy đủ của PLO1]
-PLO2: [Nội dung đầy đủ của PLO2]
+    const prompt = `Đây là tài liệu Chuẩn đầu ra CTĐT ngành Sư phạm Tiếng Anh.
+Trích xuất danh sách PLO theo định dạng (mỗi PLO 1 dòng):
+PLO1: [Nội dung]
+PLO2: [Nội dung]
 ...
-
-Nếu tài liệu có PI (Performance Indicators) hoặc mô tả chi tiết, chỉ lấy nội dung chính của từng PLO, không lấy PI con.
-Chỉ trả về danh sách PLO, không có giải thích thêm.`;
+Chỉ lấy nội dung chính, không lấy PI con. Không thêm gì khác.`;
     const r = await gemini(prompt, ploFile);
     if (r) {
       document.getElementById("plo-text").value = r.trim();
-      // Highlight textarea
       const ta = document.getElementById("plo-text");
       ta.style.borderColor = "#4ade80";
-      ta.style.boxShadow = "0 0 0 3px rgba(74,222,128,.15)";
-      setTimeout(() => { ta.style.borderColor = ""; ta.style.boxShadow = ""; }, 3000);
+      setTimeout(() => { ta.style.borderColor = ""; }, 3000);
     }
   } catch(e) { alert("Lỗi AI: " + e.message); }
   setLoading("bai-plo", false);
 }
 
-// ══════════════════════════════════════════════════════
-// GEMINI API
-// ══════════════════════════════════════════════════════
-// Xóa dòng này:
-// const API_URL = `https://generativelanguage.googleapis.com/...`
-
-async function gemini(prompt, file=null) {
-  // Tìm key và model hoạt động
-  const found = await findWorkingKey();
-  if (!found) {
-    const msg = POOL_KEYS.length > 0
-      ? "Tất cả API key đã hết quota hôm nay.\nVui lòng thử lại sau 00:00 hoặc nhập key riêng của bạn."
-      : "Vui lòng nhập Gemini API Key ở Bước 1!\n\nLấy key miễn phí tại: aistudio.google.com/app/apikey";
-    alert(msg);
-    return null;
-  }
-  const { key, model } = found;
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
-
-  const parts = [];
-  if (file) {
-    parts.push({ inline_data: { mime_type: file.mimeType, data: file.base64 } });
-  }
-  parts.push({ text: prompt });
-
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ contents: [{ parts }] })
-  });
-  if (!res.ok) {
-    const e = await res.json().catch(() => ({}));
-    throw new Error(e.error?.message || "HTTP " + res.status);
-  }
-  const data = await res.json();
-  return data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-}
-async function gemini(prompt, file=null) {
-  const key = getKey();
-  if (!key) { alert("Vui lòng nhập Gemini API Key ở Bước 1!"); return null; }
-
-  // Kiểm tra key cơ bản (AI Studio key bắt đầu bằng "AIza")
-  if (!key.startsWith("AIza")) {
-    alert("API Key không đúng định dạng.\nKey từ Google AI Studio phải bắt đầu bằng \"AIza\".\nVui lòng kiểm tra lại tại: https://aistudio.google.com/app/apikey");
-    return null;
-  }
-
-  const parts = [];
-  // inline_data: hoạt động tốt với file < 20MB và gemini-1.5-flash
-  if (file) {
-    parts.push({ inline_data: { mime_type: file.mimeType, data: file.base64 } });
-  }
-  parts.push({ text: prompt });
-
-  const res = await fetch(`${API_URL}?key=${key}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ contents: [{ parts }] })
-  });
-
-  if (!res.ok) {
-    const e = await res.json().catch(() => ({}));
-    const msg = e.error?.message || "HTTP " + res.status;
-    throw new Error(msg);
-  }
-
-  const data = await res.json();
-  return data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-}
-
-// Robust JSON extractor — xử lý khi AI trả về text kèm JSON
-function extractJSON(text, type = "object") {
-  const pattern = type === "array" ? /\[[\s\S]*\]/ : /\{[\s\S]*\}/;
-  const match = text.match(pattern);
-  if (!match) throw new Error("AI không trả về JSON hợp lệ. Vui lòng thử lại.");
-  return JSON.parse(match[0]);
-}
-
-function setLoading(id, on) {
-  const b = document.getElementById(id);
-  b.disabled = on; b.classList.toggle("loading", on);
-}
-
-// ── AI: Mô tả học phần ─────────────────────────────────
 async function aiMoTa() {
   setLoading("bai-mota", true);
   try {
     const tenVN = document.getElementById("ten-vn").value;
     const tenEN = document.getElementById("ten-en").value;
-    const gts   = collectGT('c').map(g => `${g.ten} (${g.tg}, ${g.nam})`).join("; ") || "Chưa có";
-    const prompt = `Viết mô tả vắn tắt nội dung học phần cho môn "${tenVN} (${tenEN})" ngành Sư phạm Tiếng Anh, Trường ĐH Đồng Nai.
+    const gts = collectGT('c').map(g => `${g.ten} (${g.tg}, ${g.nam})`).join("; ") || "Chưa có";
+    const r = await gemini(
+      `Viết mô tả vắn tắt học phần "${tenVN} (${tenEN})" ngành Sư phạm Tiếng Anh, ĐH Đồng Nai.
 Giáo trình: ${gts}
-Yêu cầu: Ít nhất 5 câu, đề cập đến: tên giáo trình sử dụng, các chủ đề/nội dung chính, kỹ năng rèn luyện, chuẩn đầu ra mong đợi. Viết bằng tiếng Việt học thuật, không dùng gạch đầu dòng, viết thành đoạn văn mạch lạc.`;
-    const r = await gemini(prompt, gtFile);
+Yêu cầu: ít nhất 5 câu, đề cập tên giáo trình, nội dung chính, kỹ năng rèn luyện. Viết đoạn văn học thuật tiếng Việt.`,
+      gtFile
+    );
     if (r) document.getElementById("mo-ta").value = r.trim();
   } catch(e) { alert("Lỗi AI: " + e.message); }
   setLoading("bai-mota", false);
 }
 
-// ── AI: Mục tiêu ───────────────────────────────────────
 async function aiMucTieu() {
   setLoading("bai-mt", true);
   try {
@@ -1077,88 +809,63 @@ async function aiMucTieu() {
     const plo   = document.getElementById("plo-text").value || "Không có";
     const mota  = document.getElementById("mo-ta").value    || "Không có";
     const gts   = collectGT('c').map(g => g.ten).join(", ") || "Chưa có";
-    const prompt = `Viết mục tiêu học phần cho môn "${tenVN} (${tenEN})" ngành Sư phạm Tiếng Anh, Trường ĐH Đồng Nai.
-
-Chuẩn đầu ra CTĐT (PLO):
-${plo}
-
-Mô tả học phần: ${mota}
-Giáo trình: ${gts}
-
-Trả lời đúng cấu trúc (giữ nguyên tiêu đề **):
-
+    const r = await gemini(
+      `Viết mục tiêu học phần "${tenVN} (${tenEN})" ngành Sư phạm Tiếng Anh, ĐH Đồng Nai.
+PLO: ${plo}
+Mô tả: ${mota} | Giáo trình: ${gts}
+Trả lời theo cấu trúc (giữ nguyên tiêu đề **):
 **Mục tiêu chung:**
-[2-3 câu, đề cập đến PLO liên quan]
-
+[2-3 câu]
 **Mục tiêu về Kiến thức:**
-- [3-4 ý, bắt đầu bằng động từ Bloom, liên kết PLO]
-
+- [3-4 ý]
 **Mục tiêu về Kỹ năng:**
-- [3-4 ý cụ thể]
-
+- [3-4 ý]
 **Mục tiêu về Năng lực tự chủ và Trách nhiệm:**
 - [2-3 ý]
-
-Viết bằng tiếng Việt học thuật.`;
-    const r = await gemini(prompt, gtFile);
+Viết tiếng Việt học thuật.`,
+      gtFile
+    );
     if (r) {
       const s = r.split(/\*\*Mục tiêu/i);
       s.forEach(sec => {
         const c = sec.replace(/\*\*/g,"").trim();
-        if (/^chung:/i.test(c))              document.getElementById("mt-chung").value = c.replace(/^chung:\s*/i,"").trim();
-        else if (/^về Kiến thức:/i.test(c))  document.getElementById("mt-kt").value    = c.replace(/^về Kiến thức:\s*/i,"").trim();
-        else if (/^về Kỹ năng:/i.test(c))    document.getElementById("mt-kn").value    = c.replace(/^về Kỹ năng:\s*/i,"").trim();
-        else if (/^về Năng lực/i.test(c))    document.getElementById("mt-nl").value    = c.replace(/^về Năng lực[^:]*:\s*/i,"").trim();
+        if (/^chung:/i.test(c))             document.getElementById("mt-chung").value = c.replace(/^chung:\s*/i,"").trim();
+        else if (/^về Kiến thức:/i.test(c)) document.getElementById("mt-kt").value    = c.replace(/^về Kiến thức:\s*/i,"").trim();
+        else if (/^về Kỹ năng:/i.test(c))   document.getElementById("mt-kn").value    = c.replace(/^về Kỹ năng:\s*/i,"").trim();
+        else if (/^về Năng lực/i.test(c))   document.getElementById("mt-nl").value    = c.replace(/^về Năng lực[^:]*:\s*/i,"").trim();
       });
     }
   } catch(e) { alert("Lỗi AI: " + e.message); }
   setLoading("bai-mt", false);
 }
 
-// ── AI: CLO + Ma trận ─────────────────────────────────
 async function aiCLO() {
   setLoading("bai-clo", true);
   try {
     const tenVN = document.getElementById("ten-vn").value;
     const plo   = document.getElementById("plo-text").value || "Không có";
     const mt    = document.getElementById("mt-chung").value || "Không có";
-    const prompt = `Viết 3 CLO và ma trận CLO-PLO cho môn "${tenVN}" ngành Sư phạm Tiếng Anh.
-
-Chuẩn đầu ra CTĐT (PLO):
-${plo}
-
-Mục tiêu học phần: ${mt}
-
-Trả về JSON thuần (không markdown, không backtick):
-{
-  "clo1": "Nội dung CLO1 (kiến thức, 2-3 câu, bắt đầu bằng động từ Bloom)",
-  "clo2": "Nội dung CLO2 (kỹ năng)",
-  "clo3": "Nội dung CLO3 (năng lực tự chủ)",
-  "matrix": [
-    ["CLO1", "R_or_M_or_empty", "R_or_M_or_empty", "R_or_M_or_empty", "R_or_M_or_empty", "R_or_M_or_empty", "R_or_M_or_empty", "R_or_M_or_empty", "R_or_M_or_empty"],
-    ["CLO2", ...8 values...],
-    ["CLO3", ...8 values...]
-  ]
-}
-Giải thích: mỗi ô ma trận là "" (không liên quan), "R" (Reinforced) hoặc "M" (Mastery). CLO1 liên quan PLO về kiến thức, CLO2 về kỹ năng, CLO3 về thái độ. Dựa vào nội dung PLO cụ thể để đánh đúng.`;
-    const r = await gemini(prompt);
+    const r = await gemini(
+      `Viết 3 CLO và ma trận CLO-PLO cho môn "${tenVN}" ngành Sư phạm Tiếng Anh.
+PLO: ${plo}
+Mục tiêu: ${mt}
+Trả về JSON thuần (không markdown):
+{"clo1":"...","clo2":"...","clo3":"...","matrix":[["CLO1","","","","","","","",""],["CLO2","","","","","","","",""],["CLO3","","","","","","","",""]]}
+Mỗi ô matrix: "" hoặc "R" hoặc "M".`
+    );
     if (r) {
       const d = extractJSON(r, "object");
       if (d.clo1) document.getElementById("clo1").value = d.clo1;
       if (d.clo2) document.getElementById("clo2").value = d.clo2;
       if (d.clo3) document.getElementById("clo3").value = d.clo3;
-      if (d.matrix) {
-        matrixData = d.matrix;
-        renderMatrix(d.matrix);
-      }
+      if (d.matrix) { matrixData = d.matrix; renderMatrix(d.matrix); }
     }
   } catch(e) { alert("Lỗi AI: " + e.message + "\n\nThử lại hoặc kiểm tra API key."); }
   setLoading("bai-clo", false);
 }
 
 function renderMatrix(mx) {
-  const body = document.getElementById("matrix-body");
-  body.innerHTML = mx.map(row =>
+  document.getElementById("matrix-body").innerHTML = mx.map(row =>
     `<tr>${row.map((v,i) => i===0
       ? `<td><strong>${v}</strong></td>`
       : v ? `<td><span class="${v==='M'?'badge-m':'badge-r'}">${v}</span></td>`
@@ -1167,47 +874,30 @@ function renderMatrix(mx) {
   ).join("");
 }
 
-// ── AI: Toàn bộ buổi học ──────────────────────────────
 async function aiAllBuoi() {
   setLoading("bai-buoi", true);
   try {
     const tenVN  = document.getElementById("ten-vn").value;
     const sobuoi = document.getElementById("so-buoi").value || "15";
-    const lt     = document.getElementById("gio-lt").value   || "15";
-    const th     = document.getElementById("gio-th").value   || "30";
-    const tu     = document.getElementById("gio-tuhoc").value|| "55";
-    const gts    = collectGT('c').map((g,i) => `${i+1}. ${g.ten} (${g.tg}, ${g.nam})`).join("\n") || "Chưa có";
-    const mota   = document.getElementById("mo-ta").value || "";
-
-    // Tính giờ mỗi buổi
+    const lt = document.getElementById("gio-lt").value || "15";
+    const th = document.getElementById("gio-th").value || "30";
+    const tu = document.getElementById("gio-tuhoc").value || "55";
+    const gts  = collectGT('c').map((g,i) => `${i+1}. ${g.ten} (${g.tg}, ${g.nam})`).join("\n") || "Chưa có";
+    const mota = document.getElementById("mo-ta").value || "";
     const n = parseInt(sobuoi);
-    const ltPer = Math.round(parseInt(lt)/n * 10) / 10;
-    const thPer = Math.round(parseInt(th)/n * 10) / 10;
-    const tuPer = Math.round(parseInt(tu)/n * 10) / 10;
-
-    const prompt = `Lập kế hoạch giảng dạy chi tiết cho môn "${tenVN}" với ${sobuoi} buổi học.
-
-Phân bổ giờ/buổi: LT≈${ltPer}h | TH≈${thPer}h | Tự học≈${tuPer}h
-Mô tả học phần: ${mota}
+    const ltPer = Math.round(parseInt(lt)/n*10)/10;
+    const thPer = Math.round(parseInt(th)/n*10)/10;
+    const tuPer = Math.round(parseInt(tu)/n*10)/10;
+    const r = await gemini(
+      `Lập kế hoạch giảng dạy cho môn "${tenVN}" với ${sobuoi} buổi.
+Giờ/buổi: LT≈${ltPer} | TH≈${thPer} | Tự học≈${tuPer}
+Mô tả: ${mota}
 Giáo trình: ${gts}
-
-Trả về JSON thuần (không markdown):
-[
-  {
-    "ten": "Tên buổi/chủ đề cụ thể",
-    "lt": ${ltPer},
-    "th": ${thPer},
-    "tu": ${tuPer},
-    "nd_lt": "Nội dung lý thuyết (dùng \\n cho xuống dòng, mỗi ý bắt đầu bằng -)",
-    "nd_th": "Nội dung thực hành",
-    "nd_tu": "Nhiệm vụ tự học",
-    "ppdh": "Phương pháp giảng dạy ngắn gọn",
-    "dg": "Hình thức đánh giá ngắn gọn"
-  }
-]
-Tạo đủ ${sobuoi} phần tử. Nội dung bám sát giáo trình. JSON thuần túy.`;
-
-    const r = await gemini(prompt, gtFile);
+Trả về JSON thuần:
+[{"ten":"...","lt":${ltPer},"th":${thPer},"tu":${tuPer},"nd_lt":"...","nd_th":"...","nd_tu":"...","ppdh":"...","dg":"..."}]
+Tạo đủ ${sobuoi} phần tử.`,
+      gtFile
+    );
     if (r) {
       const buois = extractJSON(r, "array");
       const cards = document.querySelectorAll(".buoi-card");
@@ -1215,35 +905,32 @@ Tạo đủ ${sobuoi} phần tử. Nội dung bám sát giáo trình. JSON thu�
         if (!cards[i]) return;
         const c = cards[i];
         const set = (cls, val) => { const e = c.querySelector(cls); if (e) { e.value = val||""; e.dataset.edited=1; }};
-        set(".bi-ten", b.ten); set(".bi-lt", b.lt); set(".bi-th", b.th); set(".bi-tu", b.tu);
-        set(".bi-nd-lt", b.nd_lt); set(".bi-nd-th", b.nd_th); set(".bi-nd-tu", b.nd_tu);
-        set(".bi-ppdh", b.ppdh); set(".bi-dg", b.dg);
+        set(".bi-ten",b.ten); set(".bi-lt",b.lt); set(".bi-th",b.th); set(".bi-tu",b.tu);
+        set(".bi-nd-lt",b.nd_lt); set(".bi-nd-th",b.nd_th); set(".bi-nd-tu",b.nd_tu);
+        set(".bi-ppdh",b.ppdh); set(".bi-dg",b.dg);
       });
     }
   } catch(e) { alert("Lỗi AI: " + e.message); }
   setLoading("bai-buoi", false);
 }
 
-// ── AI: Lịch sử biên soạn ─────────────────────────────
 async function aiLichSu() {
   if (!oldFile) { alert("Vui lòng upload đề cương cũ ở Bước 1 trước!"); return; }
   setLoading("bai-bs", true);
   try {
     const tenVN = document.getElementById("ten-vn").value;
-    const prompt = `Đây là đề cương cũ của môn "${tenVN}". Hãy so sánh với thông tin mới và viết phần "Nội dung chỉnh sửa, cập nhật" cho Mục 9 của đề cương mới.
-
-Dựa vào nội dung file đề cương cũ, liệt kê những mục có thể đã được cập nhật theo chuẩn 2026 (CLO, ma trận PLO/PI, kế hoạch giảng dạy, rubric đánh giá, v.v.).
-Viết ngắn gọn theo dạng bảng mô tả: Chương/mục | Nội dung trước | Nội dung cập nhật.
-Viết bằng tiếng Việt, 3-5 dòng cập nhật chính.`;
-    const r = await gemini(prompt, oldFile);
+    const r = await gemini(
+      `Đây là đề cương cũ của môn "${tenVN}". Viết phần "Nội dung chỉnh sửa" cho Mục 9 đề cương mới 2026.
+Liệt kê các mục đã cập nhật theo dạng: Chương/mục | Nội dung trước | Nội dung cập nhật.
+Viết tiếng Việt, 3-5 dòng.`,
+      oldFile
+    );
     if (r) document.getElementById("bs-nd").value = r.trim();
   } catch(e) { alert("Lỗi AI: " + e.message); }
   setLoading("bai-bs", false);
 }
 
-// ══════════════════════════════════════════════════════
-// XUẤT DOCX
-// ══════════════════════════════════════════════════════
+// ── Export ────────────────────────────────────────────
 async function doExport() {
   if (!validate(6)) return;
   const btn = document.getElementById("btn-exp");
@@ -1253,7 +940,6 @@ async function doExport() {
   btn.disabled = true; prog.classList.add("vis");
   const sp = (p,t) => { bar.style.width=p+"%"; lbl.textContent=t; };
   sp(10,"Đang thu thập dữ liệu...");
-
   const D = {
     tenVN:   document.getElementById("ten-vn").value.trim(),
     tenEN:   document.getElementById("ten-en").value.trim(),
@@ -1289,7 +975,6 @@ async function doExport() {
     bsND:    document.getElementById("bs-nd").value.trim(),
   };
   D.tongGio = parseInt(D.gioLT)+parseInt(D.gioTH)+parseInt(D.gioTU);
-
   sp(30,"Đang tạo file Word...");
   try {
     const blob = await buildDocx(D);
@@ -1305,9 +990,7 @@ async function doExport() {
 }
 
 // ══════════════════════════════════════════════════════
-// BUILD DOCX — theo đúng format file mẫu Tu__Noi_4
-// Font: Times New Roman 13pt
-// Margin: top=2cm bottom=2cm left=2.5cm right=2cm (A4)
+// BUILD DOCX (giữ nguyên từ bản gốc)
 // ══════════════════════════════════════════════════════
 async function buildDocx(D) {
   const {
@@ -1315,42 +998,29 @@ async function buildDocx(D) {
     AlignmentType, WidthType, BorderStyle, ShadingType, VerticalAlign,
     HeadingLevel, PageOrientation
   } = docx;
-
-  // ── Constants ─────────────────────────────────────────
   const FONT = "Times New Roman";
-  const SZ   = 26;   // 13pt = 26 half-points
-  const SZS  = 24;   // 12pt for smaller text in tables
-  const NAVY = "1A3A5C";
-
-  // A4: 11906 x 16838 twips | margins in twips (1cm = 567 twips)
+  const SZ   = 26;
+  const SZS  = 24;
   const PAGE_W = 11906;
-  const ML = 1418; // 2.5cm left
-  const MR = 1134; // 2.0cm right
-  const CONTENT_W = PAGE_W - ML - MR; // ~9354 twips
-
+  const ML = 1418;
+  const MR = 1134;
+  const CONTENT_W = PAGE_W - ML - MR;
   const b1 = { style: BorderStyle.SINGLE, size: 4, color: "000000" };
   const bA  = { top: b1, bottom: b1, left: b1, right: b1 };
   const bN  = { style: BorderStyle.NONE, size: 0, color: "FFFFFF" };
   const bNo = { top: bN, bottom: bN, left: bN, right: bN };
   const pad = { top: 60, bottom: 60, left: 100, right: 100 };
   const pad2= { top: 40, bottom: 40, left: 80,  right: 80  };
-
-  // ── Helper: Paragraph ─────────────────────────────────
   const P = (text, o={}) => new Paragraph({
     alignment: o.c ? AlignmentType.CENTER : o.r ? AlignmentType.RIGHT : AlignmentType.JUSTIFIED,
     spacing: { before: o.b||0, after: o.a||80, line: o.line||276 },
     indent: o.indent ? { left: o.indent } : undefined,
     children: [new TextRun({
-      text: text || "",
-      bold: o.bold||false, italic: o.italic||false,
-      underline: o.ul ? {} : undefined,
-      size: o.sz || SZ, font: FONT,
-      color: o.col || "000000",
-      highlight: o.yellow ? "yellow" : undefined,
+      text: text || "", bold: o.bold||false, italic: o.italic||false,
+      underline: o.ul ? {} : undefined, size: o.sz || SZ, font: FONT,
+      color: o.col || "000000", highlight: o.yellow ? "yellow" : undefined,
     })]
   });
-
-  // Mixed runs paragraph
   const PM = (runs, o={}) => new Paragraph({
     alignment: o.c ? AlignmentType.CENTER : o.r ? AlignmentType.RIGHT : AlignmentType.JUSTIFIED,
     spacing: { before: o.b||0, after: o.a||80, line: 276 },
@@ -1360,50 +1030,25 @@ async function buildDocx(D) {
       highlight: r.yellow ? "yellow" : undefined,
     }))
   });
-
-  // Section heading (bold, không in hoa)
-  const H = (text) => new Paragraph({
-    spacing: { before: 120, after: 80, line: 276 },
-    children: [new TextRun({ text, bold: true, size: SZ, font: FONT })]
-  });
-
-  // Bullet paragraph
+  const H  = (text) => new Paragraph({ spacing: { before: 120, after: 80, line: 276 }, children: [new TextRun({ text, bold: true, size: SZ, font: FONT })] });
   const BP = (text) => P("- " + text, { a: 60 });
-
-  // Empty paragraph
   const EP = () => P("", { a: 40, b: 0 });
-
-  // Text to paragraphs (split by newline)
   const T2P = (text, o={}) => {
     if (!text) return [EP()];
-    return text.split("\n").filter(l => l.trim()).map(l =>
-      P(l.replace(/^[-•]\s*/, ""), { a: 60, ...o })
-    );
+    return text.split("\n").filter(l => l.trim()).map(l => P(l.replace(/^[-•]\s*/, ""), { a: 60, ...o }));
   };
-
-  // ── Helper: Table Cell ────────────────────────────────
   const C = (children, o={}) => {
-    const paras = Array.isArray(children)
-      ? children
-      : [P(String(children||""), { c: o.c, bold: o.bold, sz: o.sz||SZ, a: 0 })];
+    const paras = Array.isArray(children) ? children : [P(String(children||""), { c: o.c, bold: o.bold, sz: o.sz||SZ, a: 0 })];
     return new TableCell({
-      borders: o.nb ? bNo : bA,
-      margins: o.sm ? pad2 : pad,
+      borders: o.nb ? bNo : bA, margins: o.sm ? pad2 : pad,
       width: o.w ? { size: o.w, type: WidthType.DXA } : { size: 0, type: WidthType.AUTO },
       verticalAlign: VerticalAlign.CENTER,
       shading: o.sh ? { fill: o.sh, type: ShadingType.CLEAR } : undefined,
-      columnSpan: o.cs || 1,
-      rowSpan:    o.rs || 1,
-      children: paras,
+      columnSpan: o.cs || 1, rowSpan: o.rs || 1, children: paras,
     });
   };
-
-  // ══════════════════════════════════════════════════════
-  // MỤC 1: HEADER + TIÊU ĐỀ
-  // ══════════════════════════════════════════════════════
-  const maHPText  = D.maHP || "[Chưa có mã]";
-  const maHPYellow= !D.maHP;
-
+  const maHPText   = D.maHP || "[Chưa có mã]";
+  const maHPYellow = !D.maHP;
   const headerBlock = [
     P("UBND TỈNH ĐỒNG NAI",        { c:true, bold:true, a:40 }),
     P("TRƯỜNG ĐẠI HỌC ĐỒNG NAI",   { c:true, bold:true, a:40 }),
@@ -1419,72 +1064,25 @@ async function buildDocx(D) {
     PM([{t:"Tên học phần (tiếng Anh): ",bold:true},{t:D.tenEN.toUpperCase()}], {c:true}),
     EP(),
   ];
-
-  // ══════════════════════════════════════════════════════
-  // MỤC 1: THÔNG TIN HỌC PHẦN
-  // ══════════════════════════════════════════════════════
-  // Bảng phân bổ giờ — 8 hàng x 9 cột (theo đúng mẫu)
   const gTT  = parseInt(D.gioLT||0) + parseInt(D.gioTH||0);
-  const CWG  = [2268,1701,945,945,756,1323,1323,945,1134]; // sum≈11340 ~CONTENT_W
+  const CWG  = [2268,1701,945,945,756,1323,1323,945,1134];
   const bangGio = new Table({
-    width: { size: CONTENT_W, type: WidthType.DXA },
-    columnWidths: CWG,
+    width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: CWG,
     rows: [
-      new TableRow({ children: [
-        C([P("Phân bổ\ncác loại giờ",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[0],rs:4}),
-        C([P("Lý thuyết",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[1]}),
-        C([P("Thực hành",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[2]}),
-        C([P("Đồ án",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[3]}),
-        C([P("Đi thực tế,\ntrải nghiệm",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[4]}),
-        C([P("Tự học,\nnghiên cứu",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[5]}),
-        C([P("Thi,\nkiểm tra",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[6]}),
-        C([P("Tổng",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[7]}),
-      ]}),
-      new TableRow({ children: [
-        C([P("Trực tiếp\ntại phòng học",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
-        C([P(D.gioLT,{c:true,sz:SZS,a:0})], {w:CWG[2]}),
-        C([P(D.gioTH,{c:true,sz:SZS,a:0})], {w:CWG[3]}),
-        C("",{w:CWG[4]}), C("",{w:CWG[5]}), C("",{w:CWG[6]}),
-        C([P(String(gTT),{c:true,sz:SZS,a:0})], {w:CWG[7]}),
-      ]}),
-      new TableRow({ children: [
-        C([P("Trực tiếp\ntrên Ms Team",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
-        C("",{w:CWG[2]}), C("",{w:CWG[3]}), C("",{w:CWG[4]}), C("",{w:CWG[5]}), C("",{w:CWG[6]}), C("",{w:CWG[7]}),
-      ]}),
-      new TableRow({ children: [
-        C([P("E-learning\ncó hướng dẫn",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
-        C("",{w:CWG[2]}), C("",{w:CWG[3]}), C("",{w:CWG[4]}), C("",{w:CWG[5]}), C("",{w:CWG[6]}), C("",{w:CWG[7]}),
-      ]}),
-      new TableRow({ children: [
-        C([P("Số giờ tự học\nvà khác\n("+D.gioTU+" giờ)",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[0],rs:2}),
-        C([P("Tự học,\ntự nghiên cứu",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
-        C("",{w:CWG[2]}), C("",{w:CWG[3]}), C("",{w:CWG[4]}),
-        C([P(D.gioTU,{c:true,sz:SZS,a:0})], {w:CWG[5]}),
-        C("",{w:CWG[6]}),
-        C([P(D.gioTU,{c:true,sz:SZS,a:0})], {w:CWG[7]}),
-      ]}),
-      new TableRow({ children: [
-        C([P("Ôn thi, dự thi,\nkiểm tra",{c:true,sz:SZS,a:0})], {w:CWG[1]}),
-        C("",{w:CWG[2]}), C("",{w:CWG[3]}), C("",{w:CWG[4]}), C("",{w:CWG[5]}), C("",{w:CWG[6]}), C("",{w:CWG[7]}),
-      ]}),
-      new TableRow({ children: [
-        C([P("Tổng",{c:true,bold:true,sz:SZS,a:0})], {w:CWG[0], cs:2}),
-        C([P(D.gioLT,{c:true,sz:SZS,a:0})], {w:CWG[2]}),
-        C([P(D.gioTH,{c:true,sz:SZS,a:0})], {w:CWG[3]}),
-        C("",{w:CWG[4]}),
-        C([P(D.gioTU,{c:true,sz:SZS,a:0})], {w:CWG[5]}),
-        C("",{w:CWG[6]}),
-        C([P(String(D.tongGio),{c:true,bold:true,sz:SZS,a:0})], {w:CWG[7]}),
-      ]}),
+      new TableRow({ children: [ C([P("Phân bổ\ncác loại giờ",{c:true,bold:true,sz:SZS,a:0})],{w:CWG[0],rs:4}), C([P("Lý thuyết",{c:true,bold:true,sz:SZS,a:0})],{w:CWG[1]}), C([P("Thực hành",{c:true,bold:true,sz:SZS,a:0})],{w:CWG[2]}), C([P("Đồ án",{c:true,bold:true,sz:SZS,a:0})],{w:CWG[3]}), C([P("Đi thực tế,\ntrải nghiệm",{c:true,bold:true,sz:SZS,a:0})],{w:CWG[4]}), C([P("Tự học,\nnghiên cứu",{c:true,bold:true,sz:SZS,a:0})],{w:CWG[5]}), C([P("Thi,\nkiểm tra",{c:true,bold:true,sz:SZS,a:0})],{w:CWG[6]}), C([P("Tổng",{c:true,bold:true,sz:SZS,a:0})],{w:CWG[7]}), ]}),
+      new TableRow({ children: [ C([P("Trực tiếp\ntại phòng học",{c:true,sz:SZS,a:0})],{w:CWG[1]}), C([P(D.gioLT,{c:true,sz:SZS,a:0})],{w:CWG[2]}), C([P(D.gioTH,{c:true,sz:SZS,a:0})],{w:CWG[3]}), C("",{w:CWG[4]}), C("",{w:CWG[5]}), C("",{w:CWG[6]}), C([P(String(gTT),{c:true,sz:SZS,a:0})],{w:CWG[7]}), ]}),
+      new TableRow({ children: [ C([P("Trực tiếp\ntrên Ms Team",{c:true,sz:SZS,a:0})],{w:CWG[1]}), C("",{w:CWG[2]}), C("",{w:CWG[3]}), C("",{w:CWG[4]}), C("",{w:CWG[5]}), C("",{w:CWG[6]}), C("",{w:CWG[7]}), ]}),
+      new TableRow({ children: [ C([P("E-learning\ncó hướng dẫn",{c:true,sz:SZS,a:0})],{w:CWG[1]}), C("",{w:CWG[2]}), C("",{w:CWG[3]}), C("",{w:CWG[4]}), C("",{w:CWG[5]}), C("",{w:CWG[6]}), C("",{w:CWG[7]}), ]}),
+      new TableRow({ children: [ C([P("Số giờ tự học\nvà khác\n("+D.gioTU+" giờ)",{c:true,bold:true,sz:SZS,a:0})],{w:CWG[0],rs:2}), C([P("Tự học,\ntự nghiên cứu",{c:true,sz:SZS,a:0})],{w:CWG[1]}), C("",{w:CWG[2]}), C("",{w:CWG[3]}), C("",{w:CWG[4]}), C([P(D.gioTU,{c:true,sz:SZS,a:0})],{w:CWG[5]}), C("",{w:CWG[6]}), C([P(D.gioTU,{c:true,sz:SZS,a:0})],{w:CWG[7]}), ]}),
+      new TableRow({ children: [ C([P("Ôn thi, dự thi,\nkiểm tra",{c:true,sz:SZS,a:0})],{w:CWG[1]}), C("",{w:CWG[2]}), C("",{w:CWG[3]}), C("",{w:CWG[4]}), C("",{w:CWG[5]}), C("",{w:CWG[6]}), C("",{w:CWG[7]}), ]}),
+      new TableRow({ children: [ C([P("Tổng",{c:true,bold:true,sz:SZS,a:0})],{w:CWG[0],cs:2}), C([P(D.gioLT,{c:true,sz:SZS,a:0})],{w:CWG[2]}), C([P(D.gioTH,{c:true,sz:SZS,a:0})],{w:CWG[3]}), C("",{w:CWG[4]}), C([P(D.gioTU,{c:true,sz:SZS,a:0})],{w:CWG[5]}), C("",{w:CWG[6]}), C([P(String(D.tongGio),{c:true,bold:true,sz:SZS,a:0})],{w:CWG[7]}), ]}),
     ]
   });
-
   const muc1 = [
     H("1. Thông tin về học phần"),
     PM([{t:"1.1. Số tín chỉ: ",bold:true},{t:`${D.soTC} tín chỉ.`}]),
     PM([{t:"1.2. Số giờ đối với các hoạt động học tập: ",bold:true},{t:`${D.tongGio} giờ`}]),
-    bangGio,
-    EP(),
+    bangGio, EP(),
     PM([{t:"1.3. Học phần thuộc khối kiến thức: ",bold:true},{t:"Cơ sở ngành ✓"}]),
     PM([{t:"1.4. Học phần tiên quyết: ",bold:true},{t:"Không"}]),
     PM([{t:"1.5. Học phần học trước: ",bold:true},{t:D.hpTruoc}]),
@@ -1492,499 +1090,97 @@ async function buildDocx(D) {
     PM([{t:"1.7. Ngôn ngữ giảng dạy: ",bold:true},{t:"Tiếng Anh"}]),
     P("1.8. Đơn vị phụ trách:", {bold:true}),
     P("   a) Khoa và bộ môn phụ trách biên soạn:"),
-    P("   - Khoa: Ngoại Ngữ"),
-    P("   - Bộ môn: Kỹ năng Tiếng Anh"),
-    P("   b) Học phần giảng dạy cho ngành: Sư phạm tiếng Anh"),
-    EP(),
+    P("   - Khoa: Ngoại Ngữ"), P("   - Bộ môn: Kỹ năng Tiếng Anh"),
+    P("   b) Học phần giảng dạy cho ngành: Sư phạm tiếng Anh"), EP(),
   ];
-
-  // ══════════════════════════════════════════════════════
-  // MỤC 2: MỤC TIÊU & CLO
-  // ══════════════════════════════════════════════════════
-  // Bảng CLO — 7 hàng x 2 cột (theo mẫu có dòng nhóm)
   const cloTbl = new Table({
     width: { size: CONTENT_W, type: WidthType.DXA },
     columnWidths: [1701, CONTENT_W - 1701],
     rows: [
-      new TableRow({ children: [
-        C([P("Ký hiệu",{c:true,bold:true,sz:SZS,a:0})],   {w:1701,sh:"D9D9D9"}),
-        C([P("Chuẩn đầu ra của học phần (CLOs)\nHoàn thành học phần này sinh viên có năng lực",{c:true,bold:true,sz:SZS,a:0})], {sh:"D9D9D9"}),
-      ]}),
-      new TableRow({ children: [
-        C([P("Kiến thức",{c:true,bold:true,sz:SZS,a:0})], {w:1701,sh:"F2F2F2"}),
-        C([P("Kiến thức",{bold:true,sz:SZS,a:0})], {sh:"F2F2F2"}),
-      ]}),
-      new TableRow({ children: [
-        C([P("CLO1",{c:true,bold:true,sz:SZS,a:0})], {w:1701}),
-        C(T2P(D.clo1, {sz:SZS,a:40})),
-      ]}),
-      new TableRow({ children: [
-        C([P("Kỹ năng",{c:true,bold:true,sz:SZS,a:0})], {w:1701,sh:"F2F2F2"}),
-        C([P("Kỹ năng",{bold:true,sz:SZS,a:0})], {sh:"F2F2F2"}),
-      ]}),
-      new TableRow({ children: [
-        C([P("CLO2",{c:true,bold:true,sz:SZS,a:0})], {w:1701}),
-        C(T2P(D.clo2, {sz:SZS,a:40})),
-      ]}),
-      new TableRow({ children: [
-        C([P("Năng lực tự chủ\nvà trách nhiệm",{c:true,bold:true,sz:SZS,a:0})], {w:1701,sh:"F2F2F2"}),
-        C([P("Năng lực tự chủ và trách nhiệm",{bold:true,sz:SZS,a:0})], {sh:"F2F2F2"}),
-      ]}),
-      new TableRow({ children: [
-        C([P("CLO3",{c:true,bold:true,sz:SZS,a:0})], {w:1701}),
-        C(T2P(D.clo3, {sz:SZS,a:40})),
-      ]}),
+      new TableRow({ children: [ C([P("Ký hiệu",{c:true,bold:true,sz:SZS,a:0})],{w:1701,sh:"D9D9D9"}), C([P("Chuẩn đầu ra của học phần (CLOs)\nHoàn thành học phần này sinh viên có năng lực",{c:true,bold:true,sz:SZS,a:0})],{sh:"D9D9D9"}), ]}),
+      new TableRow({ children: [ C([P("Kiến thức",{c:true,bold:true,sz:SZS,a:0})],{w:1701,sh:"F2F2F2"}), C([P("Kiến thức",{bold:true,sz:SZS,a:0})],{sh:"F2F2F2"}), ]}),
+      new TableRow({ children: [ C([P("CLO1",{c:true,bold:true,sz:SZS,a:0})],{w:1701}), C(T2P(D.clo1,{sz:SZS,a:40})), ]}),
+      new TableRow({ children: [ C([P("Kỹ năng",{c:true,bold:true,sz:SZS,a:0})],{w:1701,sh:"F2F2F2"}), C([P("Kỹ năng",{bold:true,sz:SZS,a:0})],{sh:"F2F2F2"}), ]}),
+      new TableRow({ children: [ C([P("CLO2",{c:true,bold:true,sz:SZS,a:0})],{w:1701}), C(T2P(D.clo2,{sz:SZS,a:40})), ]}),
+      new TableRow({ children: [ C([P("Năng lực tự chủ\nvà trách nhiệm",{c:true,bold:true,sz:SZS,a:0})],{w:1701,sh:"F2F2F2"}), C([P("Năng lực tự chủ và trách nhiệm",{bold:true,sz:SZS,a:0})],{sh:"F2F2F2"}), ]}),
+      new TableRow({ children: [ C([P("CLO3",{c:true,bold:true,sz:SZS,a:0})],{w:1701}), C(T2P(D.clo3,{sz:SZS,a:40})), ]}),
     ]
   });
-
-  // Ma trận PLO — 4 hàng x 9 cột
   const cwMx = [1134,1027,1027,1027,1027,1027,1027,1027,1027];
   const matrixTbl = new Table({
-    width: { size: CONTENT_W, type: WidthType.DXA },
-    columnWidths: cwMx,
+    width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: cwMx,
     rows: [
-      new TableRow({ children: [
-        C([P("PLO\nCLO",{c:true,bold:true,sz:SZS,a:0})], {w:cwMx[0],sh:"D9D9D9"}),
-        ...["PLO1\nPI 1.1","PLO2\nPI 2.2","PLO3\nPI 3.1","PLO4\nPI 4.1","PLO5\nPI 5.1","PLO6\nPI 6.3","PLO7\nPI 7.1","PLO8\nPI 8.1"]
-          .map((h,i) => C([P(h,{c:true,bold:true,sz:SZS,a:0})], {w:cwMx[i+1],sh:"D9D9D9"}))
-      ]}),
-      ...D.matrix.map(row => new TableRow({ children: [
-        C([P(row[0],{c:true,bold:true,sz:SZS,a:0})], {w:cwMx[0]}),
-        ...row.slice(1).map((v,i) => C([P(v||"",{c:true,sz:SZS,a:0})], {w:cwMx[i+1]}))
-      ]}))
+      new TableRow({ children: [ C([P("PLO\nCLO",{c:true,bold:true,sz:SZS,a:0})],{w:cwMx[0],sh:"D9D9D9"}), ...["PLO1\nPI 1.1","PLO2\nPI 2.2","PLO3\nPI 3.1","PLO4\nPI 4.1","PLO5\nPI 5.1","PLO6\nPI 6.3","PLO7\nPI 7.1","PLO8\nPI 8.1"].map((h,i)=>C([P(h,{c:true,bold:true,sz:SZS,a:0})],{w:cwMx[i+1],sh:"D9D9D9"})) ]}),
+      ...D.matrix.map(row => new TableRow({ children: [ C([P(row[0],{c:true,bold:true,sz:SZS,a:0})],{w:cwMx[0]}), ...row.slice(1).map((v,i)=>C([P(v||"",{c:true,sz:SZS,a:0})],{w:cwMx[i+1]})) ]}))
     ]
   });
-
   const muc2 = [
-    H("2. Mục tiêu và chuẩn đầu ra học phần"),
-    H("2.1. Mục tiêu của học phần"),
-    EP(),
-    P("* Mục tiêu chung", {bold:true, italic:true}),
-    ...T2P(D.mtChung),
-    EP(),
-    P("* Mục tiêu cụ thể", {bold:true, italic:true}),
-    P("- Về kiến thức:", {italic:true}),
-    ...T2P(D.mtKT, {indent:360}),
-    P("- Về kỹ năng:", {italic:true}),
-    ...T2P(D.mtKN, {indent:360}),
-    P("- Về năng lực tự chủ và trách nhiệm:", {italic:true}),
-    ...T2P(D.mtNL, {indent:360}),
-    EP(),
+    H("2. Mục tiêu và chuẩn đầu ra học phần"), H("2.1. Mục tiêu của học phần"), EP(),
+    P("* Mục tiêu chung",{bold:true,italic:true}), ...T2P(D.mtChung), EP(),
+    P("* Mục tiêu cụ thể",{bold:true,italic:true}),
+    P("- Về kiến thức:",{italic:true}), ...T2P(D.mtKT,{indent:360}),
+    P("- Về kỹ năng:",{italic:true}), ...T2P(D.mtKN,{indent:360}),
+    P("- Về năng lực tự chủ và trách nhiệm:",{italic:true}), ...T2P(D.mtNL,{indent:360}), EP(),
     H("2.2. Chuẩn đầu ra của học phần (PLO) và ma trận đóng góp của CLO để đạt PLO/PI"),
-    P("a. Mô tả chuẩn đầu ra của học phần (CLO)"),
-    cloTbl, EP(),
-    P("b. Ma trận đóng góp của CLO để đạt PLO/PI"),
-    matrixTbl, EP(),
+    P("a. Mô tả chuẩn đầu ra của học phần (CLO)"), cloTbl, EP(),
+    P("b. Ma trận đóng góp của CLO để đạt PLO/PI"), matrixTbl, EP(),
     P("a) Mức I (Introduced): Học phần có hỗ trợ đạt được PLO/PI và ở giới thiệu/bắt đầu."),
     P("b) Mức R (Reinforced): Học phần có hỗ trợ đạt được PLO/PI và ở mức nâng cao hơn mức bắt đầu."),
     P("c) Mức M (Mastery): Học phần hỗ trợ mạnh mẽ người học trong việc thuần thục/thành thạo hay đạt PLO/PI."),
-    P("d) Mức A (Assessed): Học phần cốt lõi cần được thu thập dữ liệu để đo lường đánh giá mức độ đạt PLO/PI."),
-    EP(),
+    P("d) Mức A (Assessed): Học phần cốt lõi cần được thu thập dữ liệu để đo lường đánh giá mức độ đạt PLO/PI."), EP(),
   ];
-
-  // ══════════════════════════════════════════════════════
-  // MỤC 3: MÔ TẢ
-  // ══════════════════════════════════════════════════════
-  const muc3 = [
-    PM([{t:"3. Mô tả vắn tắt nội dung học phần: ",bold:true}]),
-    ...T2P(D.moTa, {indent:360}),
-    EP(),
-  ];
-
-  // ══════════════════════════════════════════════════════
-  // MỤC 4: THANG ĐIỂM + RUBRIC (cố định, giống mẫu)
-  // ══════════════════════════════════════════════════════
-  const CWR = [2268,1134,1323,1323,1323,1323,1323]; // 7 cols rubric
+  const muc3 = [PM([{t:"3. Mô tả vắn tắt nội dung học phần: ",bold:true}]), ...T2P(D.moTa,{indent:360}), EP()];
+  const CWR = [2268,1134,1323,1323,1323,1323,1323];
   const makeRubricHeader = () => [
-    new TableRow({ children: [
-      C([P("Tiêu chí\nđánh giá",{c:true,bold:true,sz:SZS,a:0})],  {w:CWR[0],sh:"D9D9D9"}),
-      C([P("Trọng số\n(%)",{c:true,bold:true,sz:SZS,a:0})],        {w:CWR[1],sh:"D9D9D9"}),
-      C([P("Mức độ đạt chuẩn quy định",{c:true,bold:true,sz:SZS,a:0})], {w:CWR[2]+CWR[3]+CWR[4]+CWR[5]+CWR[6], cs:5, sh:"D9D9D9"}),
-    ]}),
-    new TableRow({ children: [
-      C([P("Tiêu chí\nđánh giá",{c:true,bold:true,sz:SZS,a:0})],  {w:CWR[0],sh:"D9D9D9"}),
-      C([P("Trọng số\n(%)",{c:true,bold:true,sz:SZS,a:0})],        {w:CWR[1],sh:"D9D9D9"}),
-      ...["A","B","C","D","F"].map((l,i)=>C([P(l,{c:true,bold:true,sz:SZS,a:0})],{w:CWR[i+2],sh:"D9D9D9"}))
-    ]}),
-    new TableRow({ children: [
-      C([P("",{sz:SZS,a:0})], {w:CWR[0]}), C([P("",{sz:SZS,a:0})], {w:CWR[1]}),
-      ...["8.5-10","7.0-8.4","5.5-6.9","4.0-5.4","0.0-3.9"].map((v,i)=>C([P(v,{c:true,sz:SZS,a:0})],{w:CWR[i+2]}))
-    ]}),
+    new TableRow({ children: [ C([P("Tiêu chí\nđánh giá",{c:true,bold:true,sz:SZS,a:0})],{w:CWR[0],sh:"D9D9D9"}), C([P("Trọng số\n(%)",{c:true,bold:true,sz:SZS,a:0})],{w:CWR[1],sh:"D9D9D9"}), C([P("Mức độ đạt chuẩn quy định",{c:true,bold:true,sz:SZS,a:0})],{w:CWR[2]+CWR[3]+CWR[4]+CWR[5]+CWR[6],cs:5,sh:"D9D9D9"}), ]}),
+    new TableRow({ children: [ C([P("Tiêu chí\nđánh giá",{c:true,bold:true,sz:SZS,a:0})],{w:CWR[0],sh:"D9D9D9"}), C([P("Trọng số\n(%)",{c:true,bold:true,sz:SZS,a:0})],{w:CWR[1],sh:"D9D9D9"}), ...["A","B","C","D","F"].map((l,i)=>C([P(l,{c:true,bold:true,sz:SZS,a:0})],{w:CWR[i+2],sh:"D9D9D9"})) ]}),
+    new TableRow({ children: [ C([P("",{sz:SZS,a:0})],{w:CWR[0]}), C([P("",{sz:SZS,a:0})],{w:CWR[1]}), ...["8.5-10","7.0-8.4","5.5-6.9","4.0-5.4","0.0-3.9"].map((v,i)=>C([P(v,{c:true,sz:SZS,a:0})],{w:CWR[i+2]})) ]}),
   ];
-
-  const rubric1 = new Table({
-    width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: CWR,
-    rows: [
-      ...makeRubricHeader(),
-      new TableRow({ children: [
-        C([P("Dự học\ntrên lớp",{c:true,sz:SZS,a:0})],{w:CWR[0]}),
-        C([P("50%",{c:true,sz:SZS,a:0})],{w:CWR[1]}),
-        C([P("Đi học đầy đủ hoặc nghỉ 1 buổi có lý do hợp lệ.",{sz:SZS,a:0})],{w:CWR[2]}),
-        C([P("Nghỉ 2 buổi có lý do hợp lệ hoặc nghỉ 1 buổi không có lý do.",{sz:SZS,a:0})],{w:CWR[3]}),
-        C([P("Nghỉ 3 buổi.",{sz:SZS,a:0})],{w:CWR[4]}),
-        C([P("Nghỉ 4 buổi.",{sz:SZS,a:0})],{w:CWR[5]}),
-        C([P("Nghỉ ≥5 buổi.",{sz:SZS,a:0})],{w:CWR[6]}),
-      ]}),
-      new TableRow({ children: [
-        C([P("Đóng góp\ntại lớp",{c:true,sz:SZS,a:0})],{w:CWR[0]}),
-        C([P("50%",{c:true,sz:SZS,a:0})],{w:CWR[1]}),
-        C([P("Tham gia đầy đủ, chủ động phát biểu, đóng góp nổi bật.",{sz:SZS,a:0})],{w:CWR[2]}),
-        C([P("Tham gia tích cực, có đóng góp thường xuyên.",{sz:SZS,a:0})],{w:CWR[3]}),
-        C([P("Tham gia tương đối, có phát biểu nhưng chưa thường xuyên.",{sz:SZS,a:0})],{w:CWR[4]}),
-        C([P("Ít tham gia, đóng góp hạn chế.",{sz:SZS,a:0})],{w:CWR[5]}),
-        C([P("Không tham gia, không có đóng góp.",{sz:SZS,a:0})],{w:CWR[6]}),
-      ]}),
-    ]
-  });
-
-  const rubric2 = new Table({
-    width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: CWR,
-    rows: [
-      ...makeRubricHeader(),
-      new TableRow({ children: [
-        C([P("Kiểm tra bài làm của cá nhân",{sz:SZS,a:0})],{w:CWR[0]}),
-        C([P("100%",{c:true,sz:SZS,a:0})],{w:CWR[1]}),
-        C([P("Hoàn thành đầy đủ 100% bài tập, đúng yêu cầu, trình bày rõ ràng.",{sz:SZS,a:0})],{w:CWR[2]}),
-        C([P("Hoàn thành phần lớn bài tập (≈80–90%), đa số đúng yêu cầu.",{sz:SZS,a:0})],{w:CWR[3]}),
-        C([P("Hoàn thành khoảng 60–79% bài tập, còn một số sai sót.",{sz:SZS,a:0})],{w:CWR[4]}),
-        C([P("Hoàn thành dưới 60% bài tập, nhiều sai sót, chưa đạt yêu cầu.",{sz:SZS,a:0})],{w:CWR[5]}),
-        C([P("Không nộp bài hoặc bài làm không đạt yêu cầu tối thiểu.",{sz:SZS,a:0})],{w:CWR[6]}),
-      ]}),
-    ]
-  });
-
-  // Bảng kế hoạch đánh giá — 7 cột (theo mẫu có cột Thời điểm)
+  const rubric1 = new Table({ width:{size:CONTENT_W,type:WidthType.DXA},columnWidths:CWR, rows:[...makeRubricHeader(), new TableRow({children:[ C([P("Dự học\ntrên lớp",{c:true,sz:SZS,a:0})],{w:CWR[0]}), C([P("50%",{c:true,sz:SZS,a:0})],{w:CWR[1]}), C([P("Đi học đầy đủ hoặc nghỉ 1 buổi có lý do hợp lệ.",{sz:SZS,a:0})],{w:CWR[2]}), C([P("Nghỉ 2 buổi có lý do hợp lệ hoặc nghỉ 1 buổi không có lý do.",{sz:SZS,a:0})],{w:CWR[3]}), C([P("Nghỉ 3 buổi.",{sz:SZS,a:0})],{w:CWR[4]}), C([P("Nghỉ 4 buổi.",{sz:SZS,a:0})],{w:CWR[5]}), C([P("Nghỉ ≥5 buổi.",{sz:SZS,a:0})],{w:CWR[6]}), ]}), new TableRow({children:[ C([P("Đóng góp\ntại lớp",{c:true,sz:SZS,a:0})],{w:CWR[0]}), C([P("50%",{c:true,sz:SZS,a:0})],{w:CWR[1]}), C([P("Tham gia đầy đủ, chủ động phát biểu, đóng góp nổi bật.",{sz:SZS,a:0})],{w:CWR[2]}), C([P("Tham gia tích cực, có đóng góp thường xuyên.",{sz:SZS,a:0})],{w:CWR[3]}), C([P("Tham gia tương đối, có phát biểu nhưng chưa thường xuyên.",{sz:SZS,a:0})],{w:CWR[4]}), C([P("Ít tham gia, đóng góp hạn chế.",{sz:SZS,a:0})],{w:CWR[5]}), C([P("Không tham gia, không có đóng góp.",{sz:SZS,a:0})],{w:CWR[6]}), ]})] });
+  const rubric2 = new Table({ width:{size:CONTENT_W,type:WidthType.DXA},columnWidths:CWR, rows:[...makeRubricHeader(), new TableRow({children:[ C([P("Kiểm tra bài làm của cá nhân",{sz:SZS,a:0})],{w:CWR[0]}), C([P("100%",{c:true,sz:SZS,a:0})],{w:CWR[1]}), C([P("Hoàn thành đầy đủ 100% bài tập, đúng yêu cầu, trình bày rõ ràng.",{sz:SZS,a:0})],{w:CWR[2]}), C([P("Hoàn thành phần lớn bài tập (≈80–90%), đa số đúng yêu cầu.",{sz:SZS,a:0})],{w:CWR[3]}), C([P("Hoàn thành khoảng 60–79% bài tập, còn một số sai sót.",{sz:SZS,a:0})],{w:CWR[4]}), C([P("Hoàn thành dưới 60% bài tập, nhiều sai sót, chưa đạt yêu cầu.",{sz:SZS,a:0})],{w:CWR[5]}), C([P("Không nộp bài hoặc bài làm không đạt yêu cầu tối thiểu.",{sz:SZS,a:0})],{w:CWR[6]}), ]})] });
   const CWD = [1701,3402,945,756,756,756,1134];
-  const dgTbl = new Table({
-    width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: CWD,
-    rows: [
-      new TableRow({ children: [
-        C([P("Điểm\nthành phần",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[0],sh:"D9D9D9"}),
-        C([P("Phương pháp đánh giá",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[1],sh:"D9D9D9"}),
-        C([P("Tỷ trọng",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[2],sh:"D9D9D9"}),
-        C([P("Chuẩn đầu ra học phần",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[3]+CWD[4]+CWD[5],cs:3,sh:"D9D9D9"}),
-        C([P("Thời điểm\nđánh giá",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[6],sh:"D9D9D9"}),
-      ]}),
-      new TableRow({ children: [
-        C([P("",{sz:SZS,a:0})],{w:CWD[0]}),
-        C([P("",{sz:SZS,a:0})],{w:CWD[1]}),
-        C([P("",{sz:SZS,a:0})],{w:CWD[2]}),
-        ...["CLO1","CLO2","CLO3"].map((v,i)=>C([P(v,{c:true,bold:true,sz:SZS,a:0})],{w:CWD[i+3]})),
-        C([P("",{sz:SZS,a:0})],{w:CWD[6]}),
-      ]}),
-      new TableRow({ children: [
-        C([P("Quá trình",{bold:true,sz:SZS,a:0})],{w:CWD[0],rs:4}),
-        C([P("Chuyên cần.",{sz:SZS,a:0})],{w:CWD[1]}),
-        C([P("10%",{c:true,sz:SZS,a:0})],{w:CWD[2]}),
-        ...["x","x","x"].map((v,i)=>C([P(v,{c:true,sz:SZS,a:0})],{w:CWD[i+3]})),
-        C([P("Tuần 1-15",{c:true,sz:SZS,a:0})],{w:CWD[6]}),
-      ]}),
-      new TableRow({ children: [
-        C([P("Tích cực tham gia trên lớp.",{sz:SZS,a:0})],{w:CWD[1]}),
-        C([P("",{sz:SZS,a:0})],{w:CWD[2]}),
-        ...["x","x","x"].map((v,i)=>C([P(v,{c:true,sz:SZS,a:0})],{w:CWD[i+3]})),
-        C([P("Tuần 1-15",{c:true,sz:SZS,a:0})],{w:CWD[6]}),
-      ]}),
-      new TableRow({ children: [
-        C([P("Bài tập về nhà.",{sz:SZS,a:0})],{w:CWD[1]}),
-        C([P("5%",{c:true,sz:SZS,a:0})],{w:CWD[2]}),
-        ...["x","x","x"].map((v,i)=>C([P(v,{c:true,sz:SZS,a:0})],{w:CWD[i+3]})),
-        C([P("Tuần 1-15",{c:true,sz:SZS,a:0})],{w:CWD[6]}),
-      ]}),
-      new TableRow({ children: [
-        C([P("Kiểm tra giữa kỳ.",{sz:SZS,a:0})],{w:CWD[1]}),
-        C([P("25%",{c:true,sz:SZS,a:0})],{w:CWD[2]}),
-        ...["x","x","x"].map((v,i)=>C([P(v,{c:true,sz:SZS,a:0})],{w:CWD[i+3]})),
-        C([P("Tuần 10-15",{c:true,sz:SZS,a:0})],{w:CWD[6]}),
-      ]}),
-      new TableRow({ children: [
-        C([P("Cuối kỳ",{bold:true,sz:SZS,a:0})],{w:CWD[0]}),
-        C([P("Thi cuối kỳ tập trung theo lịch trường, định dạng IELTS Speaking.",{sz:SZS,a:0})],{w:CWD[1]}),
-        C([P("60%",{c:true,sz:SZS,a:0})],{w:CWD[2]}),
-        ...["x","x","x"].map((v,i)=>C([P(v,{c:true,sz:SZS,a:0})],{w:CWD[i+3]})),
-        C([P("Theo kế hoạch năm học",{sz:SZS,a:0})],{w:CWD[6]}),
-      ]}),
-    ]
-  });
-
-  const muc4 = [
-    H("4. Thang điểm"),
-    P("4.1. Đánh giá theo thang điểm 10, làm tròn đến 2 chữ số thập phân, khoảng cách thang điểm nhỏ nhất là 0,25."),
-    P("4.2. Rubric đánh giá"),
-    P("- Rubric 1: Đánh giá điểm chuyên cần", {italic:true}),
-    rubric1, EP(),
-    P("- Rubric 2: Điểm đánh giá bài tập", {italic:true}),
-    rubric2, EP(),
-    P("4.3. Kế hoạch và phương pháp đánh giá, trọng số điểm thành phần"),
-    dgTbl, EP(),
-  ];
-
-  // ══════════════════════════════════════════════════════
-  // MỤC 5: GIÁO TRÌNH
-  // ══════════════════════════════════════════════════════
-  const CWT = [756, 4536, 2268, 1134, 1512]; // sum ≈ CONTENT_W
+  const dgTbl = new Table({ width:{size:CONTENT_W,type:WidthType.DXA},columnWidths:CWD, rows:[ new TableRow({children:[ C([P("Điểm\nthành phần",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[0],sh:"D9D9D9"}), C([P("Phương pháp đánh giá",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[1],sh:"D9D9D9"}), C([P("Tỷ trọng",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[2],sh:"D9D9D9"}), C([P("Chuẩn đầu ra học phần",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[3]+CWD[4]+CWD[5],cs:3,sh:"D9D9D9"}), C([P("Thời điểm\nđánh giá",{c:true,bold:true,sz:SZS,a:0})],{w:CWD[6],sh:"D9D9D9"}), ]}), new TableRow({children:[ C([P("",{sz:SZS,a:0})],{w:CWD[0]}), C([P("",{sz:SZS,a:0})],{w:CWD[1]}), C([P("",{sz:SZS,a:0})],{w:CWD[2]}), ...["CLO1","CLO2","CLO3"].map((v,i)=>C([P(v,{c:true,bold:true,sz:SZS,a:0})],{w:CWD[i+3]})), C([P("",{sz:SZS,a:0})],{w:CWD[6]}), ]}), new TableRow({children:[ C([P("Quá trình",{bold:true,sz:SZS,a:0})],{w:CWD[0],rs:4}), C([P("Chuyên cần.",{sz:SZS,a:0})],{w:CWD[1]}), C([P("10%",{c:true,sz:SZS,a:0})],{w:CWD[2]}), ...["x","x","x"].map((v,i)=>C([P(v,{c:true,sz:SZS,a:0})],{w:CWD[i+3]})), C([P("Tuần 1-15",{c:true,sz:SZS,a:0})],{w:CWD[6]}), ]}), new TableRow({children:[ C([P("Tích cực tham gia trên lớp.",{sz:SZS,a:0})],{w:CWD[1]}), C([P("",{sz:SZS,a:0})],{w:CWD[2]}), ...["x","x","x"].map((v,i)=>C([P(v,{c:true,sz:SZS,a:0})],{w:CWD[i+3]})), C([P("Tuần 1-15",{c:true,sz:SZS,a:0})],{w:CWD[6]}), ]}), new TableRow({children:[ C([P("Bài tập về nhà.",{sz:SZS,a:0})],{w:CWD[1]}), C([P("5%",{c:true,sz:SZS,a:0})],{w:CWD[2]}), ...["x","x","x"].map((v,i)=>C([P(v,{c:true,sz:SZS,a:0})],{w:CWD[i+3]})), C([P("Tuần 1-15",{c:true,sz:SZS,a:0})],{w:CWD[6]}), ]}), new TableRow({children:[ C([P("Kiểm tra giữa kỳ.",{sz:SZS,a:0})],{w:CWD[1]}), C([P("25%",{c:true,sz:SZS,a:0})],{w:CWD[2]}), ...["x","x","x"].map((v,i)=>C([P(v,{c:true,sz:SZS,a:0})],{w:CWD[i+3]})), C([P("Tuần 10-15",{c:true,sz:SZS,a:0})],{w:CWD[6]}), ]}), new TableRow({children:[ C([P("Cuối kỳ",{bold:true,sz:SZS,a:0})],{w:CWD[0]}), C([P("Thi cuối kỳ tập trung theo lịch trường.",{sz:SZS,a:0})],{w:CWD[1]}), C([P("60%",{c:true,sz:SZS,a:0})],{w:CWD[2]}), ...["x","x","x"].map((v,i)=>C([P(v,{c:true,sz:SZS,a:0})],{w:CWD[i+3]})), C([P("Theo kế hoạch năm học",{sz:SZS,a:0})],{w:CWD[6]}), ]}), ] });
+  const muc4 = [ H("4. Thang điểm"), P("4.1. Đánh giá theo thang điểm 10, làm tròn đến 2 chữ số thập phân, khoảng cách thang điểm nhỏ nhất là 0,25."), P("4.2. Rubric đánh giá"), P("- Rubric 1: Đánh giá điểm chuyên cần",{italic:true}), rubric1, EP(), P("- Rubric 2: Điểm đánh giá bài tập",{italic:true}), rubric2, EP(), P("4.3. Kế hoạch và phương pháp đánh giá, trọng số điểm thành phần"), dgTbl, EP(), ];
+  const CWT = [756,4536,2268,1134,1512];
   const makeGTTable = (list) => {
     if (!list || !list.length) return P("(Chưa có)");
-    return new Table({
-      width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: CWT,
-      rows: [
-        new TableRow({ children: [
-          C([P("TT",{c:true,bold:true,sz:SZS,a:0})],{w:CWT[0],sh:"D9D9D9"}),
-          C([P("Tên giáo trình",{c:true,bold:true,sz:SZS,a:0})],{w:CWT[1],sh:"D9D9D9"}),
-          C([P("Tác giả",{c:true,bold:true,sz:SZS,a:0})],{w:CWT[2],sh:"D9D9D9"}),
-          C([P("Năm xuất bản",{c:true,bold:true,sz:SZS,a:0})],{w:CWT[3],sh:"D9D9D9"}),
-          C([P("Nhà xuất bản",{c:true,bold:true,sz:SZS,a:0})],{w:CWT[4],sh:"D9D9D9"}),
-        ]}),
-        ...list.map((g,i) => new TableRow({ children: [
-          C([P(String(i+1),{c:true,sz:SZS,a:0})],{w:CWT[0]}),
-          C([P(g.ten||"",{sz:SZS,a:0})],{w:CWT[1]}),
-          C([P(g.tg||"",{sz:SZS,a:0})],{w:CWT[2]}),
-          C([P(g.nam||"",{c:true,sz:SZS,a:0})],{w:CWT[3]}),
-          C([P(g.nxb||"",{sz:SZS,a:0})],{w:CWT[4]}),
-        ]})),
-      ]
-    });
+    return new Table({ width:{size:CONTENT_W,type:WidthType.DXA},columnWidths:CWT, rows:[ new TableRow({children:[ C([P("TT",{c:true,bold:true,sz:SZS,a:0})],{w:CWT[0],sh:"D9D9D9"}), C([P("Tên giáo trình",{c:true,bold:true,sz:SZS,a:0})],{w:CWT[1],sh:"D9D9D9"}), C([P("Tác giả",{c:true,bold:true,sz:SZS,a:0})],{w:CWT[2],sh:"D9D9D9"}), C([P("Năm xuất bản",{c:true,bold:true,sz:SZS,a:0})],{w:CWT[3],sh:"D9D9D9"}), C([P("Nhà xuất bản",{c:true,bold:true,sz:SZS,a:0})],{w:CWT[4],sh:"D9D9D9"}), ]}), ...list.map((g,i)=>new TableRow({children:[ C([P(String(i+1),{c:true,sz:SZS,a:0})],{w:CWT[0]}), C([P(g.ten||"",{sz:SZS,a:0})],{w:CWT[1]}), C([P(g.tg||"",{sz:SZS,a:0})],{w:CWT[2]}), C([P(g.nam||"",{c:true,sz:SZS,a:0})],{w:CWT[3]}), C([P(g.nxb||"",{sz:SZS,a:0})],{w:CWT[4]}), ]})), ] });
   };
-
-  const muc5 = [
-    H("5. Giáo trình và tài liệu học tập"),
-    P("5.1. Giáo trình chính", {bold:true}),
-    makeGTTable(D.gtChinh), EP(),
-    P("5.2. Giáo trình và tài liệu học tập", {bold:true}),
-    makeGTTable(D.gtTK), EP(),
-  ];
-
-  // ══════════════════════════════════════════════════════
-  // MỤC 6: NỘI DUNG GIẢNG DẠY
-  // Col widths: Buổi|Nội dung|Tổng|LT|TH|TH|CLO
-  // ══════════════════════════════════════════════════════
-  const CWB = [800, 4536, 756, 756, 756, 756, 945];
-  const buoiHeaderRow = new TableRow({ children: [
-    C([P("Buổi",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[0],sh:"D9D9D9",rs:2}),
-    C([P("Nội dung dạy – học",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[1],sh:"D9D9D9",rs:2}),
-    C([P("Số giờ thiết kế",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[2]+CWB[3]+CWB[4]+CWB[5],cs:4,sh:"D9D9D9"}),
-    C([P("Đóng góp\ncho CLO",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[6],sh:"D9D9D9",rs:2}),
-  ]});
-  const buoiSubHeaderRow = new TableRow({ children: [
-    C([P("Tổng",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[2],sh:"D9D9D9"}),
-    C([P("Lý\nthuyết",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[3],sh:"D9D9D9"}),
-    C([P("Thực\nhành",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[4],sh:"D9D9D9"}),
-    C([P("Tự\nhọc",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[5],sh:"D9D9D9"}),
-  ]});
-
+  const muc5 = [ H("5. Giáo trình và tài liệu học tập"), P("5.1. Giáo trình chính",{bold:true}), makeGTTable(D.gtChinh), EP(), P("5.2. Giáo trình và tài liệu học tập",{bold:true}), makeGTTable(D.gtTK), EP(), ];
+  const CWB = [800,4536,756,756,756,756,945];
+  const buoiHeaderRow = new TableRow({children:[ C([P("Buổi",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[0],sh:"D9D9D9",rs:2}), C([P("Nội dung dạy – học",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[1],sh:"D9D9D9",rs:2}), C([P("Số giờ thiết kế",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[2]+CWB[3]+CWB[4]+CWB[5],cs:4,sh:"D9D9D9"}), C([P("Đóng góp\ncho CLO",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[6],sh:"D9D9D9",rs:2}), ]});
+  const buoiSubHeaderRow = new TableRow({children:[ C([P("Tổng",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[2],sh:"D9D9D9"}), C([P("Lý\nthuyết",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[3],sh:"D9D9D9"}), C([P("Thực\nhành",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[4],sh:"D9D9D9"}), C([P("Tự\nhọc",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[5],sh:"D9D9D9"}), ]});
   const buoiDataRows = D.buois.map(b => {
     const tong = (parseInt(b.lt)||0)+(parseInt(b.th)||0)+(parseInt(b.tu)||0);
-    // Build content cell: tên + LT + TH + TH + PPDH + ĐG
-    const contentParas = [
-      P(b.ten||"", {bold:true, sz:SZS, a:40}),
-    ];
-    if (b.ndLT) { contentParas.push(P("Lý thuyết:", {bold:true,italic:true,sz:SZS,a:20})); contentParas.push(...T2P(b.ndLT,{sz:SZS,a:20})); }
-    if (b.ndTH) { contentParas.push(P("Thực hành:", {bold:true,italic:true,sz:SZS,a:20})); contentParas.push(...T2P(b.ndTH,{sz:SZS,a:20})); }
-    if (b.ndTU) { contentParas.push(P("Tự học:", {bold:true,italic:true,sz:SZS,a:20})); contentParas.push(...T2P(b.ndTU,{sz:SZS,a:20})); }
-    if (b.ppdh) { contentParas.push(P("PPDH: " + b.ppdh, {italic:true,sz:SZS,a:20})); }
-    if (b.dg)   { contentParas.push(P("Đánh giá: " + b.dg, {italic:true,sz:SZS,a:20})); }
-
-    return new TableRow({ children: [
-      C([P(`Buổi ${b.num}`,{c:true,bold:true,sz:SZS,a:0})],{w:CWB[0]}),
-      C(contentParas, {w:CWB[1]}),
-      C([P(String(tong||""),{c:true,sz:SZS,a:0})],{w:CWB[2]}),
-      C([P(String(b.lt||""),{c:true,sz:SZS,a:0})],{w:CWB[3]}),
-      C([P(String(b.th||""),{c:true,sz:SZS,a:0})],{w:CWB[4]}),
-      C([P(String(b.tu||""),{c:true,sz:SZS,a:0})],{w:CWB[5]}),
-      C([P("CLO1\nCLO2\nCLO3",{c:true,sz:SZS,a:0})],{w:CWB[6]}),
-    ]});
+    const cp = [P(b.ten||"",{bold:true,sz:SZS,a:40})];
+    if (b.ndLT) { cp.push(P("Lý thuyết:",{bold:true,italic:true,sz:SZS,a:20})); cp.push(...T2P(b.ndLT,{sz:SZS,a:20})); }
+    if (b.ndTH) { cp.push(P("Thực hành:",{bold:true,italic:true,sz:SZS,a:20})); cp.push(...T2P(b.ndTH,{sz:SZS,a:20})); }
+    if (b.ndTU) { cp.push(P("Tự học:",{bold:true,italic:true,sz:SZS,a:20})); cp.push(...T2P(b.ndTU,{sz:SZS,a:20})); }
+    if (b.ppdh) cp.push(P("PPDH: "+b.ppdh,{italic:true,sz:SZS,a:20}));
+    if (b.dg)   cp.push(P("Đánh giá: "+b.dg,{italic:true,sz:SZS,a:20}));
+    return new TableRow({children:[ C([P(`Buổi ${b.num}`,{c:true,bold:true,sz:SZS,a:0})],{w:CWB[0]}), C(cp,{w:CWB[1]}), C([P(String(tong||""),{c:true,sz:SZS,a:0})],{w:CWB[2]}), C([P(String(b.lt||""),{c:true,sz:SZS,a:0})],{w:CWB[3]}), C([P(String(b.th||""),{c:true,sz:SZS,a:0})],{w:CWB[4]}), C([P(String(b.tu||""),{c:true,sz:SZS,a:0})],{w:CWB[5]}), C([P("CLO1\nCLO2\nCLO3",{c:true,sz:SZS,a:0})],{w:CWB[6]}), ]});
   });
-
-  // Hàng tổng cuối bảng
-  const ltTot = D.buois.reduce((s,b)=>s+(parseInt(b.lt)||0),0);
-  const thTot = D.buois.reduce((s,b)=>s+(parseInt(b.th)||0),0);
-  const tuTot = D.buois.reduce((s,b)=>s+(parseInt(b.tu)||0),0);
-  const tongRow = new TableRow({ children: [
-    C([P("Tổng",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[0]+CWB[1],cs:2}),
-    C([P(String(ltTot+thTot+tuTot),{c:true,bold:true,sz:SZS,a:0})],{w:CWB[2]}),
-    C([P(String(ltTot),{c:true,sz:SZS,a:0})],{w:CWB[3]}),
-    C([P(String(thTot),{c:true,sz:SZS,a:0})],{w:CWB[4]}),
-    C([P(String(tuTot),{c:true,sz:SZS,a:0})],{w:CWB[5]}),
-    C("",{w:CWB[6]}),
-  ]});
-
-  const buoiTable = new Table({
-    width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: CWB,
-    rows: [buoiHeaderRow, buoiSubHeaderRow, ...buoiDataRows, tongRow]
-  });
-
-  const muc6 = [
-    H("6. Nội dung chi tiết học phần, phương pháp giảng dạy, tiến độ và hoạt động dạy – học"),
-    buoiTable, EP(),
-  ];
-
-  // ══════════════════════════════════════════════════════
-  // MỤC 7-8: CỐ ĐỊNH (giống mẫu)
-  // ══════════════════════════════════════════════════════
-  const muc78 = [
-    H("7. Yêu cầu của giảng viên đối với học phần"),
-    BP("Phòng học: Có phương tiện phục vụ giảng dạy như wifi, máy chiếu, loa."),
-    EP(),
-    H("8. Nhiệm vụ của sinh viên"),
-    P("8.1. Các nhiệm vụ chính của SV"),
-    BP("Tham gia đầy đủ các buổi học trên lớp."),
-    BP("Chuẩn bị đầy đủ các tài liệu học tập theo quy định của giảng viên khi đến lớp."),
-    BP("Trước khi đến lớp, yêu cầu sinh viên tự đọc, nghiên cứu các bài tập, tài liệu tại nhà theo sự hướng dẫn giảng viên nhằm trao đổi, hợp tác, thảo luận các nội dung theo yêu cầu của giảng viên."),
-    BP("Tinh thần, thái độ tôn trọng, nghiêm túc, trách nhiệm, tính kỉ luật, cầu thị trong học tập, làm việc với giảng viên và các bạn trong lớp."),
-    P("8.2. Quy định về liêm chính học thuật"),
-    EP(),
-  ];
-
-  // ══════════════════════════════════════════════════════
-  // MỤC 9: BIÊN SOẠN
-  // ══════════════════════════════════════════════════════
-  // Bảng lịch sử chỉnh sửa
-  const CWH = [2268, 3402, 3402];
-  const lichSuTbl = new Table({
-    width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: CWH,
-    rows: [
-      new TableRow({ children: [
-        C([P("Chương/mục",{c:true,bold:true,sz:SZS,a:0})],{w:CWH[0],sh:"D9D9D9"}),
-        C([P("Nội dung\ntrước khi chỉnh sửa/bổ sung",{c:true,bold:true,sz:SZS,a:0})],{w:CWH[1],sh:"D9D9D9"}),
-        C([P("Nội dung\nđược cập nhật",{c:true,bold:true,sz:SZS,a:0})],{w:CWH[2],sh:"D9D9D9"}),
-      ]}),
-      ...(() => {
-        // Parse bsND thành rows nếu có format table, hoặc tạo 1 row
-        const lines = (D.bsND||"").split("\n").filter(l=>l.trim());
-        if (!lines.length) return [new TableRow({ children: [C("",{w:CWH[0]}),C("",{w:CWH[1]}),C("",{w:CWH[2]})] })];
-        // Try to detect table rows (lines with |)
-        const tableLines = lines.filter(l=>l.includes("|"));
-        if (tableLines.length >= 1) {
-          return tableLines.map(l => {
-            const parts = l.split("|").map(s=>s.trim());
-            return new TableRow({ children: [
-              C([P(parts[0]||"",{sz:SZS,a:0})],{w:CWH[0]}),
-              C([P(parts[1]||"",{sz:SZS,a:0})],{w:CWH[1]}),
-              C([P(parts[2]||"",{sz:SZS,a:0})],{w:CWH[2]}),
-            ]});
-          });
-        }
-        return [new TableRow({ children: [
-          C([P("Toàn bộ",{sz:SZS,a:0})],{w:CWH[0]}),
-          C([P("Phiên bản cũ",{sz:SZS,a:0})],{w:CWH[1]}),
-          C(T2P(D.bsND,{sz:SZS}),{w:CWH[2]}),
-        ]})];
-      })(),
-    ]
-  });
-
-  const muc9 = [
-    H("9. Biên soạn và cập nhật đề cương chi tiết"),
-    P(`9.1. Đề cương được biên soạn lần 1, năm ${D.bsNam1}.`),
-    P(`9.2. Đề cương được chỉnh sửa lần 1 năm ${D.bsNam2}.`),
-    P("9.3. Nội dung được chỉnh sửa, cập nhật, thay đổi ở lần gần nhất"),
-    lichSuTbl, EP(),
-  ];
-
-  // ══════════════════════════════════════════════════════
-  // MỤC 10: GIẢNG VIÊN (bảng 4 hàng x 2 cột như mẫu)
-  // ══════════════════════════════════════════════════════
-  const CWV = [CONTENT_W/2, CONTENT_W/2];
-  const makeGVTable = (ten, hv, dc, sdt, email, trangweb, lienhe) => new Table({
-    width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: CWV,
-    rows: [
-      new TableRow({ children: [
-        C([PM([{t:"Họ và tên: ",bold:true},{t:ten||""}])], {w:CWV[0]}),
-        C([PM([{t:"Học hàm, học vị: ",bold:true},{t:hv||""}])], {w:CWV[1]}),
-      ]}),
-      new TableRow({ children: [
-        C([PM([{t:"Địa chỉ cơ quan: ",bold:true},{t:dc||"Số 9 Lê Quý Đôn, phường Tam Hiệp, Đồng Nai"}])], {w:CWV[0]}),
-        C([PM([{t:"Điện thoại liên hệ: ",bold:true},{t:sdt||""}])], {w:CWV[1]}),
-      ]}),
-      new TableRow({ children: [
-        C([PM([{t:"Email: ",bold:true},{t:email||""}])], {w:CWV[0]}),
-        C([PM([{t:"Trang web: ",bold:true},{t:trangweb||""}])], {w:CWV[1]}),
-      ]}),
-      new TableRow({ children: [
-        C([PM([{t:"Cách liên lạc với giảng viên: ",bold:true},{t:lienhe||"Trao đổi qua zalo, điện thoại"}])], {w:CWV[0]}),
-        C([P("",{sz:SZS,a:0})], {w:CWV[1]}),
-      ]}),
-    ]
-  });
-
-  const muc10 = [
-    H("10. Thông tin giảng viên, trợ giảng, phụ trách học phần trong học kỳ"),
-    P("10.1 Giảng viên"),
-    makeGVTable(D.gvTen, D.gvHV, "", D.gvSdt, D.gvEmail, "", D.gvLH),
-    EP(),
-    P("10.2. Giảng viên dự phòng (nếu có)"),
-    makeGVTable(D.gv2Ten||"", D.gv2HV||"", "", "", D.gv2Email||"", "", ""),
-    EP(),
-    P("10.3. Phụ giảng (đối với giảng viên) hoặc Trợ giảng (đối với học viên - TA)."),
-    makeGVTable("", "", "", "", "", "", ""),
-    EP(),
-  ];
-
-  // ══════════════════════════════════════════════════════
-  // KÝ TÊN (3 cột, không border)
-  // ══════════════════════════════════════════════════════
-  const CWK = [CONTENT_W/3, CONTENT_W/3, CONTENT_W/3];
-  const kyTenTbl = new Table({
-    width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: CWK,
-    borders: { top: bN, bottom: bN, left: bN, right: bN, insideH: bN, insideV: bN },
-    rows: [new TableRow({ children: [
-      C([P("TRƯỞNG KHOA",{c:true,bold:true,sz:SZ,a:0})], {w:CWK[0],nb:true}),
-      C([P("TRƯỞNG BỘ MÔN",{c:true,bold:true,sz:SZ,a:0})], {w:CWK[1],nb:true}),
-      C([P("NGƯỜI BIÊN SOẠN",{c:true,bold:true,sz:SZ,a:0})], {w:CWK[2],nb:true}),
-    ]}),
-    new TableRow({ children: [
-      C([EP()], {w:CWK[0],nb:true}),
-      C([EP()], {w:CWK[1],nb:true}),
-      C([EP()], {w:CWK[2],nb:true}),
-    ]}),
-    new TableRow({ children: [
-      C([P("",{c:true,a:0})], {w:CWK[0],nb:true}),
-      C([P("",{c:true,a:0})], {w:CWK[1],nb:true}),
-      C([P(`ThS. ${D.gvTen}`,{c:true,sz:SZ,a:0})], {w:CWK[2],nb:true}),
-    ]}),
-    ]
-  });
-
-  const kyTen = [
-    D.bsNgay ? P(`Đồng Nai, ngày ${D.bsNgay}`, {r:true, italic:true}) : EP(),
-    EP(),
-    kyTenTbl,
-  ];
-
-  // ══════════════════════════════════════════════════════
-  // ASSEMBLE
-  // ══════════════════════════════════════════════════════
-  const allChildren = [
-    ...headerBlock,
-    ...muc1,
-    ...muc2,
-    ...muc3,
-    ...muc4,
-    ...muc5,
-    ...muc6,
-    ...muc78,
-    ...muc9,
-    ...muc10,
-    ...kyTen,
-  ];
-
+  const ltTot=D.buois.reduce((s,b)=>s+(parseInt(b.lt)||0),0);
+  const thTot=D.buois.reduce((s,b)=>s+(parseInt(b.th)||0),0);
+  const tuTot=D.buois.reduce((s,b)=>s+(parseInt(b.tu)||0),0);
+  const tongRow = new TableRow({children:[ C([P("Tổng",{c:true,bold:true,sz:SZS,a:0})],{w:CWB[0]+CWB[1],cs:2}), C([P(String(ltTot+thTot+tuTot),{c:true,bold:true,sz:SZS,a:0})],{w:CWB[2]}), C([P(String(ltTot),{c:true,sz:SZS,a:0})],{w:CWB[3]}), C([P(String(thTot),{c:true,sz:SZS,a:0})],{w:CWB[4]}), C([P(String(tuTot),{c:true,sz:SZS,a:0})],{w:CWB[5]}), C("",{w:CWB[6]}), ]});
+  const buoiTable = new Table({ width:{size:CONTENT_W,type:WidthType.DXA},columnWidths:CWB, rows:[buoiHeaderRow,buoiSubHeaderRow,...buoiDataRows,tongRow] });
+  const muc6 = [ H("6. Nội dung chi tiết học phần, phương pháp giảng dạy, tiến độ và hoạt động dạy – học"), buoiTable, EP(), ];
+  const muc78 = [ H("7. Yêu cầu của giảng viên đối với học phần"), BP("Phòng học: Có phương tiện phục vụ giảng dạy như wifi, máy chiếu, loa."), EP(), H("8. Nhiệm vụ của sinh viên"), P("8.1. Các nhiệm vụ chính của SV"), BP("Tham gia đầy đủ các buổi học trên lớp."), BP("Chuẩn bị đầy đủ các tài liệu học tập theo quy định của giảng viên khi đến lớp."), BP("Trước khi đến lớp, yêu cầu sinh viên tự đọc, nghiên cứu các bài tập, tài liệu tại nhà theo sự hướng dẫn giảng viên."), BP("Tinh thần, thái độ tôn trọng, nghiêm túc, trách nhiệm, tính kỉ luật, cầu thị trong học tập."), P("8.2. Quy định về liêm chính học thuật"), EP(), ];
+  const CWH = [2268,3402,3402];
+  const lichSuTbl = new Table({ width:{size:CONTENT_W,type:WidthType.DXA},columnWidths:CWH, rows:[ new TableRow({children:[ C([P("Chương/mục",{c:true,bold:true,sz:SZS,a:0})],{w:CWH[0],sh:"D9D9D9"}), C([P("Nội dung\ntrước khi chỉnh sửa/bổ sung",{c:true,bold:true,sz:SZS,a:0})],{w:CWH[1],sh:"D9D9D9"}), C([P("Nội dung\nđược cập nhật",{c:true,bold:true,sz:SZS,a:0})],{w:CWH[2],sh:"D9D9D9"}), ]}), ...(() => { const lines=(D.bsND||"").split("\n").filter(l=>l.trim()); if (!lines.length) return [new TableRow({children:[C("",{w:CWH[0]}),C("",{w:CWH[1]}),C("",{w:CWH[2]})]})]; const tl=lines.filter(l=>l.includes("|")); if (tl.length>=1) return tl.map(l=>{const parts=l.split("|").map(s=>s.trim());return new TableRow({children:[C([P(parts[0]||"",{sz:SZS,a:0})],{w:CWH[0]}),C([P(parts[1]||"",{sz:SZS,a:0})],{w:CWH[1]}),C([P(parts[2]||"",{sz:SZS,a:0})],{w:CWH[2]})]});}); return [new TableRow({children:[C([P("Toàn bộ",{sz:SZS,a:0})],{w:CWH[0]}),C([P("Phiên bản cũ",{sz:SZS,a:0})],{w:CWH[1]}),C(T2P(D.bsND,{sz:SZS}),{w:CWH[2]})]})]; })(), ] });
+  const muc9 = [ H("9. Biên soạn và cập nhật đề cương chi tiết"), P(`9.1. Đề cương được biên soạn lần 1, năm ${D.bsNam1}.`), P(`9.2. Đề cương được chỉnh sửa lần 1 năm ${D.bsNam2}.`), P("9.3. Nội dung được chỉnh sửa, cập nhật, thay đổi ở lần gần nhất"), lichSuTbl, EP(), ];
+  const CWV = [CONTENT_W/2,CONTENT_W/2];
+  const makeGVTable = (ten,hv,dc,sdt,email,tw,lh) => new Table({ width:{size:CONTENT_W,type:WidthType.DXA},columnWidths:CWV, rows:[ new TableRow({children:[C([PM([{t:"Họ và tên: ",bold:true},{t:ten||""}])],{w:CWV[0]}),C([PM([{t:"Học hàm, học vị: ",bold:true},{t:hv||""}])],{w:CWV[1]})]}), new TableRow({children:[C([PM([{t:"Địa chỉ cơ quan: ",bold:true},{t:dc||"Số 9 Lê Quý Đôn, phường Tam Hiệp, Đồng Nai"}])],{w:CWV[0]}),C([PM([{t:"Điện thoại liên hệ: ",bold:true},{t:sdt||""}])],{w:CWV[1]})]}), new TableRow({children:[C([PM([{t:"Email: ",bold:true},{t:email||""}])],{w:CWV[0]}),C([PM([{t:"Trang web: ",bold:true},{t:tw||""}])],{w:CWV[1]})]}), new TableRow({children:[C([PM([{t:"Cách liên lạc với giảng viên: ",bold:true},{t:lh||"Trao đổi qua zalo, điện thoại"}])],{w:CWV[0]}),C([P("",{sz:SZS,a:0})],{w:CWV[1]})]}), ] });
+  const muc10 = [ H("10. Thông tin giảng viên, trợ giảng, phụ trách học phần trong học kỳ"), P("10.1 Giảng viên"), makeGVTable(D.gvTen,D.gvHV,"",D.gvSdt,D.gvEmail,"",D.gvLH), EP(), P("10.2. Giảng viên dự phòng (nếu có)"), makeGVTable(D.gv2Ten||"",D.gv2HV||"","","",D.gv2Email||"","",""), EP(), P("10.3. Phụ giảng (đối với giảng viên) hoặc Trợ giảng (đối với học viên - TA)."), makeGVTable("","","","","","",""), EP(), ];
+  const CWK = [CONTENT_W/3,CONTENT_W/3,CONTENT_W/3];
+  const kyTenTbl = new Table({ width:{size:CONTENT_W,type:WidthType.DXA},columnWidths:CWK, borders:{top:bN,bottom:bN,left:bN,right:bN,insideH:bN,insideV:bN}, rows:[ new TableRow({children:[C([P("TRƯỞNG KHOA",{c:true,bold:true,sz:SZ,a:0})],{w:CWK[0],nb:true}),C([P("TRƯỞNG BỘ MÔN",{c:true,bold:true,sz:SZ,a:0})],{w:CWK[1],nb:true}),C([P("NGƯỜI BIÊN SOẠN",{c:true,bold:true,sz:SZ,a:0})],{w:CWK[2],nb:true})]}), new TableRow({children:[C([EP()],{w:CWK[0],nb:true}),C([EP()],{w:CWK[1],nb:true}),C([EP()],{w:CWK[2],nb:true})]}), new TableRow({children:[C([P("",{c:true,a:0})],{w:CWK[0],nb:true}),C([P("",{c:true,a:0})],{w:CWK[1],nb:true}),C([P(`ThS. ${D.gvTen}`,{c:true,sz:SZ,a:0})],{w:CWK[2],nb:true})]}), ] });
+  const kyTen = [ D.bsNgay ? P(`Đồng Nai, ngày ${D.bsNgay}`,{r:true,italic:true}) : EP(), EP(), kyTenTbl, ];
+  const allChildren = [...headerBlock,...muc1,...muc2,...muc3,...muc4,...muc5,...muc6,...muc78,...muc9,...muc10,...kyTen];
   const doc = new Document({
-    styles: {
-      default: {
-        document: { run: { font: FONT, size: SZ } }
-      }
-    },
-    sections: [{
-      properties: {
-        page: {
-          size: { width: 11906, height: 16838 }, // A4
-          margin: { top: 1134, right: 1134, bottom: 1134, left: 1418 } // 2/2/2/2.5cm
-        }
-      },
-      children: allChildren,
-    }]
+    styles: { default: { document: { run: { font: FONT, size: SZ } } } },
+    sections: [{ properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1134, right: 1134, bottom: 1134, left: 1418 } } }, children: allChildren }]
   });
-
   return await Packer.toBlob(doc);
 }
 </script>
