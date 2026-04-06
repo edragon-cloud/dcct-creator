@@ -133,15 +133,16 @@ textarea.form-control{resize:vertical;min-height:85px;}
     <div class="key-box">
       <i class="bi bi-key-fill"></i> <strong>Gemini API Key</strong>
       <span id="key-status-icon" style="margin-left:6px;font-size:.8rem;"></span>
-      <div class="mt-1">
+      <div class="mt-1" style="font-size:.8rem;">
+        Lấy key miễn phí:
         <a href="https://aistudio.google.com/app/apikey" target="_blank">
-          <i class="bi bi-box-arrow-up-right"></i> Lấy API Key miễn phí tại đây
+          <i class="bi bi-box-arrow-up-right"></i> aistudio.google.com
         </a>
-        (đăng nhập Google → nhấn "Create API key")
+        → đăng nhập Google → nhấn <strong>"Create API key"</strong> → copy dán vào ô dưới.
       </div>
       <div style="margin-top:8px;display:flex;gap:8px;align-items:center;">
         <input type="password" id="gkey" class="form-control" style="font-size:.83rem;"
-          placeholder="Dán API Key vào đây (tùy chọn nếu đã có key dùng chung)..."
+          placeholder="Dán API Key của bạn vào đây..."
           oninput="onKeyInput()"/>
         <button onclick="saveKey()" class="btn-ai" style="padding:8px 13px;white-space:nowrap;">
           <i class="bi bi-check2"></i> Lưu & Dùng
@@ -474,12 +475,6 @@ textarea.form-control{resize:vertical;min-height:85px;}
 // POOL KEY — bỏ comment để dùng (mỗi key từ 1 Gmail khác nhau)
 // Tạo key tại: aistudio.google.com/app/apikey
 // ══════════════════════════════════════════════════════
-const POOL_KEYS = [
-  // "AIzaSy...",  // Gmail 1
-  // "AIzaSy...",  // Gmail 2
-  // "AIzaSy...",  // Gmail 3
-];
-
 // URL Google Apps Script (paste URL deploy của code.gs vào đây)
 const GAS_URL = "https://script.google.com/macros/s/AKfycbwjicnzIUp-oqkdniyk1xyYeN8Ms4uceaFI2GkzK5SquO5Sk0gy7S2YaVsV0beOLRvv/exec";
 
@@ -513,18 +508,9 @@ function saveKey() {
   }
   _keyMem = k; _cachedKey = null;
   try { localStorage.setItem("dcct_key", k); } catch(e) {}
-  setKeyStatus("checking","⏳ Đang xác minh key...");
-  // Xác minh bằng 1 request thật
-  callGemini(k, [{ text:"Hi" }]).then(r => {
-    if (r.ok && r.data.candidates) {
-      _cachedKey = k;
-      setKeyStatus("ok","✅ Key hợp lệ — AI sẵn sàng!");
-    } else if (r.status === 429) {
-      setKeyStatus("warn","⚠️ Key hợp lệ nhưng đang bị rate limit. Thử lại sau 1–2 phút.");
-    } else {
-      setKeyStatus("error","❌ Key không hợp lệ hoặc bị khoá. Kiểm tra lại tại AI Studio.");
-    }
-  });
+  // Không gửi request verify — tránh tốn quota chỉ để kiểm tra
+  // Key sẽ được xác nhận tự động khi dùng tính năng AI lần đầu
+  setKeyStatus("ok","✅ Key đã lưu — AI sẵn sàng dùng!");
 }
 
 // Khi GV gõ vào ô key — reset trạng thái
@@ -532,44 +518,29 @@ function onKeyInput() {
   _cachedKey = null;
   const k = document.getElementById("gkey").value.trim();
   if (!k) { setKeyStatus("",""); return; }
-  if (!k.startsWith("AIza")) setKeyStatus("error","❌ Key sai định dạng");
-  else setKeyStatus("info","Nhấn 'Lưu & Dùng' để xác minh key này");
+  if (!k.startsWith("AIza")) setKeyStatus("error","❌ Key sai định dạng — phải bắt đầu bằng AIza...");
+  else setKeyStatus("info","Nhấn 'Lưu & Dùng' để lưu key này");
 }
 
-// Tự phát hiện key khi load trang — hiển thị trạng thái ngay
-async function autoDetectKey() {
-  // Kiểm tra pool key
-  const activePoolKeys = POOL_KEYS.filter(k=>k&&k.startsWith("AIza"));
-  if (activePoolKeys.length > 0) {
-    setKeyStatus("pool","🔑 Đang dùng key dùng chung của khoa — không cần nhập thêm");
-    return;
-  }
-  // Kiểm tra key đã lưu
+// Tự phát hiện key khi load trang — không gửi request
+function autoDetectKey() {
   const saved = getKey();
   if (saved && saved.startsWith("AIza")) {
-    setKeyStatus("ok","✅ API Key đã được lưu — AI sẵn sàng!");
-    return;
+    setKeyStatus("ok","✅ API Key đã được lưu — AI sẵn sàng dùng!");
+  } else {
+    setKeyStatus("info","💡 Nhập API Key để dùng tính năng AI gợi ý (miễn phí, lấy tại aistudio.google.com)");
   }
-  // Không có key nào
-  setKeyStatus("info","💡 Chưa có key — nhập key để dùng tính năng AI, hoặc bỏ qua nếu tự điền tay");
 }
 
 // Hiển thị icon trạng thái
 function setKeyStatus(type, msg) {
   const iconEl   = document.getElementById("key-status-icon");
   const statusEl = document.getElementById("kstatus");
-  const icons = {
-    ok:      "✅", warn: "⚠️", error: "❌",
-    info:    "💡", pool: "🔑", checking: "⏳", "": ""
-  };
-  const colors = {
-    ok:"#15803d", warn:"#92400e", error:"#991b1b",
-    info:"#1e40af", pool:"#5b21b6", checking:"#64748b", "":"#64748b"
-  };
-  iconEl.textContent  = icons[type] || "";
+  const icons  = { ok:"✅", warn:"⚠️", error:"❌", info:"💡", checking:"⏳", "":"" };
+  const colors = { ok:"#15803d", warn:"#92400e", error:"#991b1b", info:"#1e40af", checking:"#64748b", "":"#64748b" };
+  iconEl.textContent   = icons[type]  || "";
   statusEl.textContent = msg;
   statusEl.style.color = colors[type] || "#64748b";
-  // Ẩn ktest-result cũ
   document.getElementById("ktest-result").style.display = "none";
 }
 
@@ -598,58 +569,39 @@ async function callGemini(key, parts) {
   }
 }
 
-// Lấy key hợp lệ để dùng — KHÔNG gửi request probe
-// Chỉ kiểm tra format, ưu tiên: cache → user key → pool keys
+// Lấy key hợp lệ — ưu tiên cache → user key
 function resolveKey() {
   if (_cachedKey) return _cachedKey;
   const userKey = getKey();
-  if (userKey && userKey.startsWith("AIza")) return userKey;
-  for (const k of POOL_KEYS) {
-    if (k && k.startsWith("AIza")) return k;
-  }
-  return null;
+  return (userKey && userKey.startsWith("AIza")) ? userKey : null;
 }
 
-// testKey — giữ lại để tương thích, nhưng không còn nút bấm
+// testKey — giữ lại để tương thích
 async function testKey() { await saveKey(); }
 
-// ── Gemini API — gọi AI thật ─────────────────────────
+// ── Gemini API ────────────────────────────────────────
 async function gemini(prompt, file=null) {
   const parts = [];
   if (file) parts.push({ inline_data: { mime_type: file.mimeType, data: file.base64 } });
   parts.push({ text: prompt });
 
-  // Thử tối đa: cache key → user key → pool keys (không probe riêng)
-  const keysToTry = [];
-  if (_cachedKey) keysToTry.push(_cachedKey);
-  const userKey = getKey();
-  if (userKey && userKey.startsWith("AIza") && !keysToTry.includes(userKey)) keysToTry.push(userKey);
-  for (const k of POOL_KEYS) {
-    if (k && k.startsWith("AIza") && !keysToTry.includes(k)) keysToTry.push(k);
-  }
-
-  if (keysToTry.length === 0) {
-    alert("Vui lòng nhập Gemini API Key ở Bước 1!\nLấy key miễn phí tại: aistudio.google.com/app/apikey");
+  const key = resolveKey();
+  if (!key) {
+    alert("Vui lòng nhập Gemini API Key ở Bước 1!\n\nLấy key miễn phí (30 giây):\n1. Vào aistudio.google.com/app/apikey\n2. Đăng nhập Google\n3. Nhấn 'Create API key' → Copy\n4. Dán vào ô API Key ở Bước 1");
     return null;
   }
 
-  for (const key of keysToTry) {
-    const r = await callGemini(key, parts);
-    if (r.ok && r.data.candidates) {
-      _cachedKey = key; // cache key đang hoạt động
-      return r.data.candidates[0]?.content?.parts?.[0]?.text || "";
-    }
-    if (r.status === 429) {
-      if (key === _cachedKey) _cachedKey = null; // cache hết hạn, thử key tiếp
-      continue;
-    }
-    // Lỗi không phải 429 → ném ra để hàm gọi xử lý
-    throw new Error(r.data.error?.message || "HTTP " + r.status);
+  const r = await callGemini(key, parts);
+  if (r.ok && r.data.candidates) {
+    _cachedKey = key;
+    return r.data.candidates[0]?.content?.parts?.[0]?.text || "";
   }
-
-  // Hết tất cả keys
-  alert("⚠️ API key đã hết quota hoặc bị rate limit.\nVui lòng thử lại sau 1–2 phút hoặc lấy key mới tại:\naistudio.google.com/app/apikey");
-  return null;
+  if (r.status === 429) {
+    _cachedKey = null;
+    alert("⚠️ API key đang bị giới hạn tạm thời (rate limit).\n\nVui lòng đợi 1–2 phút rồi thử lại.\nNếu vẫn bị sau 5 phút → quota ngày đã hết, lấy key mới tại aistudio.google.com/app/apikey");
+    return null;
+  }
+  throw new Error(r.data.error?.message || "HTTP " + r.status);
 }
 
 function extractJSON(text, type = "object") {
